@@ -1,0 +1,87 @@
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+name: main
+
+on: [push, pull_request] # Trigger when someone pushs or dens PR
+
+# 3 Jobs, release
+jobs:
+  release:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    env:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - name: Checkout Ur Code
+        uses: actions/checkout@v3
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      # You can test your matrix by printing the current dotnet version
+      - name: Display .NET Version((with the dotnet CLI))
+        run: |
+          dir 
+          dotnet --version
+
+        # Building  your code
+      - name: Building Ur Code
+        run: |
+          dir
+          cd ./src/YAWS
+          dotnet build
+        
+        # Testing your code
+      - name: Testing Ur Code(with the dotnet CLI on YAWS.sln)
+        run: |
+          dir      
+          dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+     
+      # Packaging workflow data as artifacts (to save log files, core dumps, test results, or screenshots)
+      - name: Upload dotnet test results(Packaging workflow data as artifacts)
+        uses: actions/upload-artifact@v3
+        with:
+            name: YAWS-TestResults-${{ matrix.dotnet-version }}
+            path: TestResults-${{ matrix.dotnet-version }}
+
+      - name: Generate changelog
+        run: echo "#Good things are comming" > ${{github.workspace}}-CHANGELOG.txt
+
+      - name: Display Build-In Variables values(Workflow)
+        run: |
+          echo  "  "
+          echo  "ref_type   ====> ${{github.ref_type }}"
+          echo  "workspace  ====> ${{github.workspace }}"
+          echo  "github.ref ====> ${{github.ref}}"
+          echo  "event_name ====> ${{github.event_name}}"
+          more  ${{github.workspace}}-CHANGELOG.txt
+  deploy:
+    needs: release
+    runs-on:  windows-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+          source-url: https://nuget.pkg.github.com/<owner>/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Publish (Release Mode)
+        run: |
+          dir
+          cd ./src/YAWS
+          dotnet publish -v d  -o ${{ github.workspace }}/bin/Publish --configuration Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishReadyToRun=true
+      
+      
