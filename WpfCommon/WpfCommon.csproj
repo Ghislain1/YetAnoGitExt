@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Nullable>disable</Nullable>
+        <LangVersion>9</LangVersion>
+        <TargetFrameworks>net472;net7.0-windows</TargetFrameworks>
+        <RootNamespace>WpfCommon</RootNamespace>
+        <UseWpf>true</UseWpf>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NLog" Version="5.2.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Icons" />
+    </ItemGroup>
+
+</Project>
