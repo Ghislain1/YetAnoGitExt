@@ -11,7 +11,7 @@ namespace RevisionViewer
 {
     public class RevisionViewModel : NotificationBase, ITreeItemViewModel
     {
-        private readonly Dictionary<int, IconType> LevelToIconTypes = new Dictionary<int, IconType> { { 0, IconType.Icon_Home_Svgs }, { 1, IconType.Icon_List_Svgs }, { 2, IconType.Icon_Location_Pin_Svgs }, { 3, IconType.Icon_Format_1_Svgs } };
+        private readonly Dictionary<int, IconType> LevelToIconTypes = new Dictionary<int, IconType> { { 0, IconType.Icon_Home_Svgs }, { 1, IconType.Icon_Location_Pin_Svgs }, { 2, IconType.Icon_Doc_Svgs }, { 3, IconType.Icon_Format_1_Svgs } };
         private ITreeItem model;
 
         public RevisionViewModel(int level, Revision item)
@@ -210,12 +210,15 @@ namespace RevisionViewer
                     Expand();
                     this.IsShowHistoryButtonVisible = false;
                     this.IsHideHistoryButtonVisible = true;
+                    this.IsSetLatestButtonVisible = !CanExpand;
                 }
 
                 // If the UI tells us to close
                 else
                 {
                     ClearChildren();
+                    this.IsShowHistoryButtonVisible = false;
+                    this.IsHideHistoryButtonVisible = false;
                 }
 
             }

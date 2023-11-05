@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:RevisionViewer="clr-namespace:RevisionViewer;assembly=RevisionViewer" xmlns:icons="clr-namespace:BoostDraft.Icons;assembly=WpfCommon"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:RevisionViewer="clr-namespace:RevisionViewer;assembly=RevisionViewer"
+        xmlns:icons="clr-namespace:BoostDraft.Icons;assembly=WpfCommon" 
+        xmlns:entrypoint="clr-namespace:EntryPoint"
+        d:DataContext="{d:DesignInstance entrypoint:MainWindowViewModel}"
         mc:Ignorable="d" >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -19,14 +22,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Height="50"  Grid.Row="0"/>
-        <!--<DataGrid AutoGenerateColumns="False" Name="grid" Grid.Row="1" CanUserAddRows="False"  HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto"  Margin="12"
-                  ItemsSource="{Binding  .}"
-				  AlternationCount="2" AlternatingRowBackground="LightGray">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="DOCUMENT">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>-->
+        <TextBlock    Grid.Row="0" Text=" Just for Demo" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline2TextBlock}"/>
+   
         <Grid    Grid.Row="1" Margin="10" Background="AliceBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="500" Width="Auto"/>
@@ -39,8 +36,12 @@
             <TextBlock FontWeight="Bold" Margin="00,0,0,0" Grid.Column="1"  VerticalAlignment="Center" Text="MODIFIED" />
             <TextBlock FontWeight="Bold" Margin="00,0,0,0" Grid.Column="2"  VerticalAlignment="Center" Text="ACTION" />
         </Grid>
-
-        <TreeView  Grid.Row="2" ItemsSource="{Binding Revisions}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"> 
+      <!--TODO@GhZe: replace with DataGrid if needed -->
+      <ItemsControl   ItemsSource="{Binding RevisionTreeCollection}" >
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>       
+        <TreeView  ItemsSource="{Binding Revisions}" >
             <!--Resources-->
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type RevisionViewer:RevisionViewModel}" ItemsSource="{Binding Children}">
@@ -51,21 +52,21 @@
                             <ColumnDefinition  MinWidth="100" Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Column="0" >
-                            <icons:GeometryIcon   Margin="3"  Icon="{Binding IconType}"/>
+                            <icons:GeometryIcon   Margin="3"  Icon="{Binding IconType}" Width="12" Height="12"/>
                             <TextBlock VerticalAlignment="Center" Text="{Binding Title}" />
-                            <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Text="{Binding Version}" />
+                            <TextBlock Margin="3,0,0,0" VerticalAlignment="Center" Foreground="Blue" Text="{Binding Version}" />
                         </StackPanel>
-                        <TextBlock Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Left" Text="{Binding LastModifiedAt , StringFormat='yyyy-MM-dd, HH:mm:ss'}" />
-                        <StackPanel   Grid.Column="2" >
-                            <Button  Visibility="{Binding IsViewHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="View history"   Command="{Binding ViewHistoryCommand}" CommandParameter="{Binding}"  Style="{DynamicResource MaterialDesignFlatLightButton}"  />
-                            <Button  Visibility="{Binding IsHideHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Content="Hide history"  Command="{Binding HideHistoryCommand}"  CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
-                            <Button  Visibility="{Binding IsShowHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Show history"  Command="{Binding ShowHistoryCommand}" CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
-                            <Button  Visibility="{Binding IsSetLatestButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Set latest"  Command="{Binding SetLatestCommand}" CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
-                        </StackPanel>
+                       <TextBlock Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" Text="{Binding LastModifiedAt , StringFormat='yyyy-MM-dd, HH:mm:ss'}" />
+                    <StackPanel    Grid.Column="2" >
+                      <Button Margin="0,5,0,0"   Visibility="{Binding IsViewHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="View history"   Command="{Binding ViewHistoryCommand}" CommandParameter="{Binding}"  Style="{DynamicResource MaterialDesignFlatLightButton}"  />
+                      <Button Margin="0,5,0,0"   Visibility="{Binding IsHideHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Content="Hide history"  Command="{Binding HideHistoryCommand}"  CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
+                      <Button Margin="0,5,0,0"    Visibility="{Binding IsShowHistoryButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Show history"  Command="{Binding ShowHistoryCommand}" CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
+                      <Button Margin="0,5,0,0"    Visibility="{Binding IsSetLatestButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Set latest"  Command="{Binding SetLatestCommand}" CommandParameter="{Binding}" Style="{DynamicResource MaterialDesignFlatLightButton}"  />
+                    </StackPanel>
                     </Grid>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type RevisionViewer:SeparatorViewModel}" ItemsSource="{Binding Children}">
-                    <Border x:Name="Bd" BorderBrush="LightGray" Margin="3" MinWidth="220"  CornerRadius="2" Background="AliceBlue" Padding="1" SnapsToDevicePixels="true">
+                    <Border x:Name="Bd" BorderBrush="LightGray" Margin="3"  MinWidth="100"   Width="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=ActualWidth}"  CornerRadius="2" Background="AliceBlue"   SnapsToDevicePixels="true">
                         <TextBlock VerticalAlignment="Stretch" Text="{Binding Title}" />
                     </Border>
                 </HierarchicalDataTemplate>
@@ -77,15 +78,12 @@
                     <Setter Property="Focusable" Value="False" />
                 </Style>
             </TreeView.ItemContainerStyle>
-        </TreeView>
-        <!--</DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn    Header="MODIFIED"   Binding="{Binding LastModifiedAt, StringFormat='yyyy-MM-dd'}"	 />
-                <DataGridTemplateColumn   Header="ACTION"     				 />
-            </DataGrid.Columns>
-        </DataGrid>-->
-        <!--BUTTONS-->
+        </TreeView>    
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    </ScrollViewer>
+    <!--BUTTONS-->
         <StackPanel Grid.Row="3" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="5" >
             <Button  Content="OK"  Margin="3"   />
             <Button  Content="Cancel"  Margin="3"  Style="{DynamicResource MaterialDesignOutlinedButton}"  />
