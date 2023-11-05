@@ -1,6 +1,6 @@
 # What's is this?
-This is a repository for collaborators witch is UI stuff.
-Developers create branches and create PRs. The project is approved by merging.
+![image](https://github.com/Ghislain1/TreeDataGridControl/assets/13945825/7d26b9d8-2790-45c8-a879-0936b1faeebf)
+
 
 # Projects
 This article explains the role of each project.
