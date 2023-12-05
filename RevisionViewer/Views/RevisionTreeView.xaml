@@ -52,7 +52,7 @@
         
 
         <TreeView Grid.Row="3" x:Name="treeView" ItemsSource="{Binding Path=Revisions}"
-            ItemContainerStyle="{StaticResource StretchTreeViewItemStyle}">
+           ItemContainerStyle="{StaticResource StretchTreeViewItemStyle}" >
             <TreeView.Resources>
         <HierarchicalDataTemplate DataType="{x:Type rv:RevisionViewModel}"   ItemsSource="{Binding Children}" >
           <Border Background="{Binding IsSeparator, Converter={StaticResource BoolToBackgroundConverter}, ConverterParameter=Normal}" CornerRadius="5">
