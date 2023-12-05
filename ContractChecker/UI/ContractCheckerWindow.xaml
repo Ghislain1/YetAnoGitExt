@@ -1,0 +1,129 @@
+<Window x:Class="ContractChecker.UI.ContractCheckerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:icons="clr-namespace:WpfCommon.Icons;assembly=WpfCommon"
+        xmlns:converters="clr-namespace:WpfCommon.Converters;assembly=WpfCommon"
+        xmlns:ui="clr-namespace:ContractChecker.UI"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance ui:ContractCheckerViewModel}"
+        Title="Contract Checker" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <WrapPanel>
+                <TextBlock Text="Checklist" VerticalAlignment="Center"/>
+                <Border BorderThickness="1" Padding="2" BorderBrush="DimGray">
+                    <TextBlock>
+                        <Run Text="{Binding RulesItemsCount,Mode=OneWay}"/>
+                        <Run Text="rules"></Run>
+                    </TextBlock>
+                </Border>
+            </WrapPanel>
+
+            <StackPanel Margin="20" HorizontalAlignment="Right">
+                <Button Content="Edit" Command="{Binding OpenEditPreferenceCommand}" Margin="0,0,0,0"/>
+                <Button Content="Run Checkers" Command="{Binding ExecuteContractCheckerCommand}" Margin="0,10,0,0"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <WrapPanel>
+                        <TextBlock>
+                            <Run Text="  Conflicted" Foreground="IndianRed"/>
+                            <Run Text="{Binding ConflictedItemsCount,Mode=OneWay}" Foreground="IndianRed"/>
+                            <Run Text="  NotMention" Foreground="DarkOrange"/>
+                            <Run Text="{Binding NotMentionItemsCount,Mode=OneWay}" Foreground="DarkOrange"/>
+                            <Run Text="  Fulled" Foreground="LightGreen"/>
+                            <Run Text="{Binding FulFilledItemsCount,Mode=OneWay}" Foreground="LightGreen"/>
+                        </TextBlock>
+                    </WrapPanel>
+                    <Border Background="Black" Visibility="{Binding HasRuleChanged, Converter={converters:TrueVisibleFalseCollapsed}}">
+                        <WrapPanel>
+                            <TextBlock Text="Check list has been updated since last checking." Foreground="White"/>
+                            <Button Content="Check again" Command="{Binding ExecuteContractCheckerCommand}"/>
+                        </WrapPanel>
+                    </Border>
+                    <TextBlock Text="Results" FontSize="20"></TextBlock>
+                </StackPanel>
+
+
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Results}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type ui:ResultViewModel}">
+                            <Grid>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <WrapPanel>
+                                        <icons:GeometryIcon
+                                            Width="16"
+                                            Height="16"
+                                            Icon="{Binding Icon}"
+                                            Foreground="{Binding IconColor, Converter={converters:ColorToBrushConverter}}"/>
+                                        <TextBlock Text="{Binding Rule}"/>
+                                        <Button Command="{Binding Path=DataContext.RecheckRuleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding}">
+                                            <icons:GeometryIcon
+                                                Width="16"
+                                                Height="16"
+                                                Icon="Icon_Redo_Svgs"/>
+                                        </Button>
+                                    </WrapPanel>
+                                    <TextBlock Grid.Row="1" Text="{Binding Line}"/>
+                                </Grid>
+
+                                <!--loading icon-->
+                                <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
+                                      Visibility="{Binding IsLoading, Converter={converters:TrueVisibleFalseCollapsed}}">
+                                    <icons:GeometryIcon x:Name="_reloadingIcon" Icon="Icon_Redo_Svgs" Width="60" Height="60"/>
+                                    <Grid.Triggers>
+                                        <EventTrigger SourceName="_reloadingIcon" RoutedEvent="Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard Storyboard.TargetName="_reloadingIcon" Storyboard.TargetProperty="Angle">
+                                                    <DoubleAnimation Duration="0:0:2" To="360" RepeatBehavior="Forever" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Grid.Triggers>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Grid Grid.Row="1">
+                    <Grid.Triggers>
+                        <EventTrigger SourceName="_loadingIcon" RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetName="_loadingIcon" Storyboard.TargetProperty="Angle">
+                                    <DoubleAnimation Duration="0:0:2" To="360" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                    <StackPanel Visibility="{Binding ExecuteContractCheckerCommand.IsExecuting,Converter={converters:TrueVisibleFalseCollapsed}}">
+                        <icons:GeometryIcon x:Name="_loadingIcon" Icon="Icon_Redo_Svgs" Width="60" Height="60"/>
+                        <TextBlock Text="loading..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,100 +1,24 @@
-﻿using SvgResourceGenerator;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel; 
-using System.Linq; 
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using WpfCommon;
-using WpfCommon.Command;
 
 namespace RevisionViewer
 {
-    public class RevisionViewModel : NotificationBase, ITreeItemViewModel
+    public class RevisionViewModel : NotificationBase
     {
-        private readonly Dictionary<int, IconType> LevelToIconTypes = new Dictionary<int, IconType> { { 0, IconType.Icon_Home_Svgs }, { 1, IconType.Icon_Location_Pin_Svgs }, { 2, IconType.Icon_Doc_Svgs }, { 3, IconType.Icon_Format_1_Svgs } };
-        private ITreeItem model;
-
-        public RevisionViewModel(int level, Revision item)
+        public static RevisionViewModel CopyRevisionViewModel(RevisionViewModel revisionViewModel)
         {
-            Level = level;
-            model = item;
-            Title = item.Label;
-            IsSelected = false;
-            IsExpanded = false;
-            LastModifiedAt = item.LastModified;
-            Version = item.Version;
-            IconType = level switch
-            {
-                0 => LevelToIconTypes[level],
-                1 => LevelToIconTypes[level],
-                2 => LevelToIconTypes[level],
-                3 => LevelToIconTypes[level],
-                _ => LevelToIconTypes[2]
-            };
-            if (level==0)
-            {
-                 IsViewHistoryButtonVisible = true;
-                 IsHideHistoryButtonVisible = false;
-                 IsShowHistoryButtonVisible = false;
-            }
-            if(!(model.Children?.Any()== true))
-            {
-                IsSetLatestButtonVisible = true;    
-            }
+            var rev = new RevisionViewModel();
+            rev.Title = revisionViewModel.Title;
+            rev.LastModifiedAt = revisionViewModel.LastModifiedAt;
 
-            // Comands : TODO@GhZe later
+            return rev;
+        }
 
-            ViewHistoryCommand = new AsyncDelegateCommand<object>((input) =>
-            {
-                if (input is not RevisionViewModel revisionViewModel)
-                {
-                    return Task.Delay(100);
-                }
-                revisionViewModel.IsHideHistoryButtonVisible = true;
-                revisionViewModel.IsShowHistoryButtonVisible = false;
-                revisionViewModel.IsExpanded = true;
-
-                return Task.Delay(100);
-            });
-            SetLatestCommand = new AsyncDelegateCommand<object>((input) =>
-            {
-                if (input is not RevisionViewModel revisionViewModel)
-                {
-                    return Task.Delay(100);
-                }
-                revisionViewModel.LastModifiedAt = DateTime.Now;
-               
-                      return Task.Delay(100);
-            });
-
-            HideHistoryCommand = new AsyncDelegateCommand<object>((input) => 
-            {
-
-                if (input is not RevisionViewModel revisionViewModel)
-                {
-                    return Task.Delay(100);
-                }
-                revisionViewModel.IsHideHistoryButtonVisible = false;
-                revisionViewModel.IsShowHistoryButtonVisible = true;
-                revisionViewModel.IsExpanded = false;
-
-                return Task.Delay(100); 
-            });
-
-           ShowHistoryCommand = new AsyncDelegateCommand<object>(( input) =>
-            {
-                if(input is not RevisionViewModel revisionViewModel)
-                {
-                    return Task.Delay(100);
-                }
-                revisionViewModel.IsHideHistoryButtonVisible = true;
-                revisionViewModel.IsShowHistoryButtonVisible = false;
-                revisionViewModel.IsExpanded = true;
-
-                return Task.Delay(100);
-            });
-
-
+        private bool _isSeparator;
+        public bool IsSeparator
+        {
+            get => _isSeparator;
+            set => SetProperty(ref _isSeparator, value);
         }
 
         private string _title;
@@ -103,6 +27,14 @@ namespace RevisionViewer
             get => _title;
             set => SetProperty(ref _title, value);
         }
+
+        private string _action;
+        public string Action
+        {
+            get => _action;
+            set => SetProperty(ref _action, value);
+        }
+
         private string _version;
         public string Version
         {
@@ -110,204 +42,62 @@ namespace RevisionViewer
             set => SetProperty(ref _version, value);
         }
 
-        private bool _isViewHistoryButtonVisible;
-        public bool IsViewHistoryButtonVisible
+        private bool _isLatestVersion;
+        public bool IsLatestVersion
         {
-            get => _isViewHistoryButtonVisible;
-            set => SetProperty(ref _isViewHistoryButtonVisible, value);
+            get => _isLatestVersion;
+            set => SetProperty(ref _isLatestVersion, value);
         }
-        private bool _isHideHistoryButtonVisible;
-        public bool IsHideHistoryButtonVisible
-        {
-            get => _isHideHistoryButtonVisible;
-            set => SetProperty(ref _isHideHistoryButtonVisible, value);
-        }
-        private bool _isShowHistoryButtonVisible;
-        public bool IsShowHistoryButtonVisible
-        {
-            get => _isShowHistoryButtonVisible;
-            set => SetProperty(ref _isShowHistoryButtonVisible, value);
-        }
-        private bool _isSetLatestButtonVisible;
-        public bool IsSetLatestButtonVisible
-        {
-            get => _isSetLatestButtonVisible;
-            set => SetProperty(ref _isSetLatestButtonVisible, value);
-        }
-        
 
-        private DateTime _lastModifiedAt;
+        public string DefaultIcon { get; set; }
 
-        public DateTime LastModifiedAt
+        private string _icon;
+        public string Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
+        }
+        private string _lastModifiedAt;
+        public string LastModifiedAt
         {
             get => _lastModifiedAt;
             set => SetProperty(ref _lastModifiedAt, value);
         }
 
-        private ObservableCollection<ITreeItemViewModel> children;
-        public ObservableCollection<ITreeItemViewModel> Children
+        private ObservableCollection<RevisionViewModel> _children = new ();
+        public ObservableCollection<RevisionViewModel> Children
         {
-            get => children;
-            set => SetProperty(ref children, value);
+            get => _children;
+            set => SetProperty(ref _children, value);
+        }
+
+        private ObservableCollection<RevisionViewModel> _revisions = new();
+        public ObservableCollection<RevisionViewModel> Revisions
+        {
+            get => _revisions;
+            set => SetProperty(ref _revisions, value);
         }
 
         private bool _isSelected;
-
         public bool IsSelected
         {
             get => _isSelected;
-            set => SetProperty(ref _isSelected, value);
+            set 
+            { 
+                SetProperty(ref _isSelected, value);
+                Icon = value ? "Icon_Location_Pin_Svgs" : DefaultIcon;
+            }            
         }
 
-        private int _level;
-        public int Level
-        {
-            get => _level;
-            set
-            {
-                if (SetProperty(ref _level, value))
-                {
-
-                }
-            }
-        }
-
-        private string _iconName;
-        public string IconName
-        {
-            get => _iconName;
-            set => SetProperty(ref _iconName, value);
-        }
-
-        private IconType _iconType;
-        public IconType IconType
-        {
-            get => _iconType;
-            set => SetProperty(ref _iconType, value);
-        }
-
-
-        /// <summary>
-        /// Indicates if this item can be expanded
-        /// </summary>
-        public bool CanExpand => model.Children?.Any() == true;
         private bool _isExpanded;
-        /// <summary>
-        /// Indicates if the current item is expanded or not
-        /// </summary>
         public bool IsExpanded
         {
             get => _isExpanded;
-
             set
             {
                 SetProperty(ref _isExpanded, value);
-
-                // If the UI tells us to expand...
-                if (value == true)
-                {
-                    // Find all children
-                    Expand();
-                    this.IsShowHistoryButtonVisible = false;
-                    this.IsHideHistoryButtonVisible = true;
-                    this.IsSetLatestButtonVisible = !CanExpand;
-                }
-
-                // If the UI tells us to close
-                else
-                {
-                    ClearChildren();
-                    this.IsShowHistoryButtonVisible = false;
-                    this.IsHideHistoryButtonVisible = false;
-                }
-
+                Action = IsLatestVersion ? (value ? "Hide history" : "View history") : "Set latest";
             }
         }
-
-        /// <summary>
-        /// Removes all children from the list, adding a dummy item to show the expand icon if required
-        /// </summary>
-        private void ClearChildren()
-        {
-            // Clear items
-            Children = new ObservableCollection<ITreeItemViewModel>();
-
-            // Show the expand arrow if we are not  last level
-            if (model?.Children?.Any() == true)
-            {
-                Children.Add(null);
-            }
-
-        }
-
-        public IAsyncCommand HideHistoryCommand { get; }
-        public IAsyncCommand ShowHistoryCommand { get; }
-        public IAsyncCommand ViewHistoryCommand { get; }
-        public IAsyncCommand SetLatestCommand { get; }
-        
-
-
-        /// <summary>
-        ///  Expands current item  and finds all children
-        /// </summary>
-        private void Expand()
-        {
-            // We cannot expand when no child exists
-            if (!(model.Children?.Any()==true))
-            {
-                return;
-            }
-
-            // Find all children
-            var children = model.Children?.Select(content =>
-            {
-                var nextLevel = Level + 1;
-
-                if (content is Separator separator)
-                {
-                    var separatorVM = new SeparatorViewModel(nextLevel, separator);
-                    return separatorVM;
-                }
-                else
-                {
-                    var vm = new RevisionViewModel(nextLevel, content as Revision);
-                    return vm as ITreeItemViewModel;
-                }
-
-
-            });
-
-            Children = new ObservableCollection<ITreeItemViewModel>(children.ToArray());
-
-        }
-    }
-
-
-    public class SeparatorViewModel : NotificationBase, ITreeItemViewModel
-    {
-
-        public SeparatorViewModel(int level, Separator item)
-        {
-            this.Title = item.Label?.ToUpper();
-        }
-        private string _title;
-        public string Title
-        {
-            get => _title;
-            set => SetProperty(ref _title, value);
-        }
-
-        private ObservableCollection<ITreeItemViewModel> children;
-        public ObservableCollection<ITreeItemViewModel> Children
-        {
-            get => children;
-            set => SetProperty(ref children, value);
-        }
-    }
-
-    public interface ITreeItemViewModel
-    {
-        public string Title { get; }
-        public ObservableCollection<ITreeItemViewModel> Children { get; }
     }
 }

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFrameworks>net472;net7.0-windows</TargetFrameworks>
+        <Nullable>disable</Nullable>
+        <UseWPF>true</UseWPF>
+        <LangVersion>10</LangVersion>
+        <RootNamespace>EntryPoint</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ContractChecker\ContractChecker.csproj" />
+      <ProjectReference Include="..\RevisionViewer\RevisionViewer.csproj" />
+      <ProjectReference Include="..\WpfCommon\WpfCommon.csproj" />
+    </ItemGroup>
+</Project>

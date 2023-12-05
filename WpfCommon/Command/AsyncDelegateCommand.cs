@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WpfCommon.Command
 {
-    public class AsyncDelegateCommand<T> : NotificationBase, ICommand<T>, IAsyncCommand
+    public class AsyncDelegateCommand<T> : NotificationBase, IAsyncCommand<T>
     {
         private readonly Func<T, Task> _action;
         private readonly Func<T, bool> _canExecute;

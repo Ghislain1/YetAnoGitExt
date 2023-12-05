@@ -19,6 +19,10 @@ namespace WpfCommon.Command
         public bool IsExecuting { get; }
     }
 
+    public interface IAsyncCommand<T> : ICommand<T>,IAsyncCommand
+    {
+    }
+
     public interface IAsyncCommandWithoutArgs : IAsyncCommand
     {
         public Task ExecuteAsync();

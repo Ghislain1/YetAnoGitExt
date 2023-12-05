@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:RevisionViewer="clr-namespace:RevisionViewer;assembly=RevisionViewer"
         xmlns:icons="clr-namespace:BoostDraft.Icons;assembly=WpfCommon" 
-        xmlns:entrypoint="clr-namespace:EntryPoint"
+        xmlns:entrypoint="clr-namespace:EntryPoint" xmlns:icons1="clr-namespace:WpfCommon.Icons;assembly=WpfCommon"
         d:DataContext="{d:DesignInstance entrypoint:MainWindowViewModel}"
         mc:Ignorable="d" >
     <Window.Resources>

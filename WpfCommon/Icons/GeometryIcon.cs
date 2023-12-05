@@ -9,7 +9,7 @@ using System.Windows.Media;
 using SvgResourceGenerator;
 
 // Do not changes the namespace.
-namespace BoostDraft.Icons
+namespace WpfCommon.Icons
 {
     /// <summary>
     /// This control draws the Geometry

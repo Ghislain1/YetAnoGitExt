@@ -11,9 +11,4 @@
     <ItemGroup>
       <PackageReference Include="NLog" Version="5.2.4" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Icons" />
-    </ItemGroup>
-
 </Project>

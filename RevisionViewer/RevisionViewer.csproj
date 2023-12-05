@@ -4,6 +4,7 @@
         <Nullable>disable</Nullable>
         <LangVersion>9</LangVersion>
         <TargetFrameworks>net472;net7.0-windows</TargetFrameworks>
+        <UseWpf>true</UseWpf>
     </PropertyGroup>
 
     <ItemGroup>
