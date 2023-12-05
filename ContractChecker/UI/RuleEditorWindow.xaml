@@ -4,9 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:ui="clr-namespace:ContractChecker.UI"
+        
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance ui:RuleEditorViewModel}"
         Title="RuleEditorWindow" Height="450" Width="800">
+  
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
