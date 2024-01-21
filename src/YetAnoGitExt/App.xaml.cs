@@ -6,17 +6,29 @@
 //  writing by an officer of Ghis. All Rights Reserved.
 // </copyright>
 
-namespace YetAnoGitExt
-{
-    using System.Configuration;
-    using System.Data;
-    using System.Windows;
+namespace YetAnoGitExt;
 
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+using Prism.Ioc;
+using Prism.Unity;
+using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Windows;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+ 
+    public partial class App : PrismApplication
     {
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<ShellWindow>();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+
+        }
     }
 
-}
