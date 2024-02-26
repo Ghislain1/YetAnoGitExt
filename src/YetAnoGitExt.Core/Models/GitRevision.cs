@@ -19,9 +19,9 @@ public interface IGitItem
 
     string? Guid { get; }
 }
-public class GitRevision: IGitItem
+public class GitRevision : IGitItem
 {
-   
+
 
     public GitRevision(ObjectId objectId)
     {
@@ -29,9 +29,9 @@ public class GitRevision: IGitItem
     }
     public IReadOnlyList<ObjectId>? ParentIds { get; set; }
 
- 
+
     public ObjectId? TreeGuid { get; internal set; }
- 
+
     public DateTime AuthorDate => FromUnixTimeSeconds(AuthorUnixTime);
     public long AuthorUnixTime { get; set; }
     private static DateTime FromUnixTimeSeconds(long unixTime)
@@ -47,7 +47,7 @@ public class GitRevision: IGitItem
     public bool HasMultiLineMessage { get; set; }
     public bool HasNotes { get; set; }
     public override string ToString() => $"{this.ObjectId.ToShortString()}:{Subject}";
-    public ObjectId ObjectId  { get; }
+    public ObjectId ObjectId { get; }
     string? _body;
     public string? Body
     {

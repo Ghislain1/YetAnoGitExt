@@ -8,7 +8,7 @@
 
 namespace YetAnoGitExt;
 
- 
+
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,6 +26,15 @@ using YetAnoGitExt.ControlExt.Controls;
 /// </summary>
 public partial class ShellWindow : WindowExt
 {
-    public ShellWindow() =>    this. InitializeComponent();
-    
+    public ShellWindow()
+    {
+        this.InitializeComponent();
+        this.Loaded += this.ShellWindow_Loaded;
+    }
+
+    private void ShellWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        var sd = this.Style;
+        var rd = (ResourceDictionary)Application.LoadComponent(new Uri("/YetAnoGitExt.ControlExt;component/Themes/Generic.xaml", UriKind.Relative));
+    }
 }

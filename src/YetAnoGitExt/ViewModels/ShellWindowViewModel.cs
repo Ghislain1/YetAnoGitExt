@@ -29,7 +29,7 @@ public class ShellWindowViewModel : BindableBase
         get => this.workingDirectory;
         set => this.SetProperty(ref this.workingDirectory, value);
     }
-    private ObservableCollection<GitRevision> gitRevisionCollection =null!;
+    private ObservableCollection<GitRevision> gitRevisionCollection = null!;
     public ObservableCollection<GitRevision> GitRevisionCollection
     {
         get => this.gitRevisionCollection;

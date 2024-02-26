@@ -98,7 +98,7 @@ public class WindowExt : Window
     /// The template for the title bar. The default shows a <see cref="TextBlock" /> with the title.
     /// </summary>
     public static readonly DependencyProperty TitleTemplateProperty = DependencyProperty.Register(
-        nameof(TitleTemplate), typeof(DataTemplate), typeof(WindowExt            ));
+        nameof(TitleTemplate), typeof(DataTemplate), typeof(WindowExt));
 
     /// <summary>
     /// The template for the title bar. The default shows a <see cref="TextBlock" /> with the title.
@@ -150,7 +150,12 @@ public class WindowExt : Window
     /// <summary>
     /// Creates a new <see cref="MaterialWindow" />.
     /// </summary>
-    public WindowExt() : base() { }
+    public WindowExt() : base()
+
+
+    {
+
+    }
 
     public override void OnApplyTemplate()
     {

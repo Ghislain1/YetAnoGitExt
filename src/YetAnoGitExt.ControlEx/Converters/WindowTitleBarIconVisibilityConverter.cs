@@ -61,4 +61,3 @@ public class WindowTitleBarIconVisibilityConverter : IMultiValueConverter
         throw new NotImplementedException();
     }
 }
-

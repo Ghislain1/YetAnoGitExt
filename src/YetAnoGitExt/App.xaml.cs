@@ -18,17 +18,16 @@ using System.Windows;
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
- 
-    public partial class App : PrismApplication
+
+public partial class App : PrismApplication
+{
+    protected override Window CreateShell()
     {
-        protected override Window CreateShell()
-        {
-            return Container.Resolve<ShellWindow>();
-        }
-
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-
-        }
+        return Container.Resolve<ShellWindow>();
     }
 
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+
+    }
+}

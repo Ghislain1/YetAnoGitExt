@@ -12,4 +12,10 @@
     Height="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:ShellWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
-    mc:Ignorable="d" /> 
+    mc:Ignorable="d">
+  
+  
+  
+  
+  <Button Style="{StaticResource  WindowButtonStyle}" />
+</controls:WindowExt>

@@ -319,7 +319,7 @@ public class GitRevisionService : IGitRevisionService
         void ParseAssert(string message)
         {
             _noOfParseError++;
-           // DebugHelpers.Assert(!Debugger.IsAttached || _noOfParseError > 1, message);
+            // DebugHelpers.Assert(!Debugger.IsAttached || _noOfParseError > 1, message);
             Trace.WriteLineIf(_noOfParseError < 10, message);
         }
     }
