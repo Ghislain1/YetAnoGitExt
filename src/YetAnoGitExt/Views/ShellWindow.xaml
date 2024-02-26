@@ -29,31 +29,8 @@
                     Margin="8,0,0,0"
                     Style="{StaticResource WindowTitleTextBlockStyle}"
                     Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType={x:Type controls:WindowExt}}}" />
-                <StackPanel
-                    Grid.Column="1"
-                    VerticalAlignment="Stretch"
-                    Orientation="Horizontal">
-                    <Button Style="{StaticResource WindowButtonStyle}">
-                        <materialDesign:PackIcon Kind="Github" Style="{StaticResource WindowButtonIconStyle}" />
-                    </Button>
-                    <Button Style="{StaticResource WindowButtonStyle}" ToolTip="Troubleshout">
-                        <materialDesign:PackIcon Kind="NewReleases" Style="{StaticResource WindowButtonIconStyle}" />
-                    </Button>
-                    <Button Style="{StaticResource WindowButtonStyle}" ToolTip="Settings">
-                        <materialDesign:PackIcon Kind="Settings" Style="{StaticResource WindowButtonIconStyle}" />
-                    </Button>
-                    <Button Style="{StaticResource WindowButtonStyle}">
-                        <materialDesign:PackIcon Kind="Grid" Style="{StaticResource WindowButtonIconStyle}" />
-                    </Button>
-                    <views:ToolBarTrayView />
+                <views:ToolBarTrayView Grid.Column="1" />
 
-                    <Border
-                        Width="1"
-                        Margin="8,4,8,4"
-                        VerticalAlignment="Stretch"
-                        Background="{Binding Path=BorderForegroundBrush, RelativeSource={RelativeSource AncestorType={x:Type controls:WindowExt}}}"
-                        SnapsToDevicePixels="True" />
-                </StackPanel>
             </Grid>
         </DataTemplate>
     </controls:WindowExt.TitleTemplate>
@@ -66,12 +43,12 @@
         VerticalAlignment="Stretch"
         HorizontalScrollBarVisibility="Auto"
         VerticalScrollBarVisibility="Auto">
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+        <Grid VerticalAlignment="Top" ShowGridLines="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="Auto" MinWidth="50" />
+                <ColumnDefinition Width="8" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="4" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -81,19 +58,22 @@
             <!--  Left Side Content  -->
             <views:LeftSideView
                 Grid.Row="0"
-              HorizontalAlignment="Left"
                 Grid.Column="0"
                 MinWidth="20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Background="Gray"
                 DataContext="{Binding LeftSideViewModel}" />
             <GridSplitter
                 Grid.Row="0"
-                Grid.Column="1"
-                Width="2" />
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="2"
-                FontSize="50"
-                Text="conten of side bar " />
+                Grid.Column="0"
+                Width="2"
+                HorizontalAlignment="Right" />
+            <Grid Grid.Row="0" Grid.Column="2" Height="750" >
+                <TextBlock FontSize="50" Text="conten of side bar " />
+
+            </Grid>
+
 
 
         </Grid>
