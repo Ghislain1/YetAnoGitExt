@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YetAnoGitExt", "YetAnoGitExt\YetAnoGitExt.csproj", "{19E15244-B85D-4285-AB08-EB28FF8C0B75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YetAnoGitExt", "YetAnoGitExt\YetAnoGitExt.csproj", "{19E15244-B85D-4285-AB08-EB28FF8C0B75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YetAnoGitExt.Core", "YetAnoGitExt.Core\YetAnoGitExt.Core.csproj", "{626C1DA7-CE81-4873-AEC7-B64D1BC024A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YetAnoGitExt.Core", "YetAnoGitExt.Core\YetAnoGitExt.Core.csproj", "{626C1DA7-CE81-4873-AEC7-B64D1BC024A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YetAnoGitExt.ControlExt", "YetAnoGitExt.ControlEx\YetAnoGitExt.ControlExt.csproj", "{6EE6EE1C-BAA8-41A0-8ECB-49DABD21F5CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{626C1DA7-CE81-4873-AEC7-B64D1BC024A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626C1DA7-CE81-4873-AEC7-B64D1BC024A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626C1DA7-CE81-4873-AEC7-B64D1BC024A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE6EE1C-BAA8-41A0-8ECB-49DABD21F5CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE6EE1C-BAA8-41A0-8ECB-49DABD21F5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE6EE1C-BAA8-41A0-8ECB-49DABD21F5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE6EE1C-BAA8-41A0-8ECB-49DABD21F5CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

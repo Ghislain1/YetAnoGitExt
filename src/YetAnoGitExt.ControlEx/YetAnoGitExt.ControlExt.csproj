@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>   
+    <UseWPF>true</UseWPF>
+    <RepositoryUrl>https://github.com/Ghislain1/YetAnoGitExt</RepositoryUrl>  
+    <RepositoryType>git</RepositoryType>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+  </ItemGroup>
+
+ 
+
+</Project>

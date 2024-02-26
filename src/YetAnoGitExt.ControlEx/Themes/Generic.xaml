@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/YetAnoGitExt.ControlExt;component/Themes/WindowExt.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/YetAnoGitExt.ControlExt;component/Themes/NavigationWindowExt.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
