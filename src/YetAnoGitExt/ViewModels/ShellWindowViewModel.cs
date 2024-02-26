@@ -24,6 +24,8 @@ public class ShellWindowViewModel : BindableBase
     private string gitFullPathExe = "C:\\Program Files\\Git\\bin\\git.exe";
     private string workingDirectory = "C:\\git\\ZoeProg";
     private string revisionFilter = "--max-count=100000 --exclude=refs/notes/commits --all";
+
+ 
     public string WorkingDirectory
     {
         get => this.workingDirectory;

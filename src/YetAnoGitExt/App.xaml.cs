@@ -8,6 +8,7 @@
 
 namespace YetAnoGitExt;
 
+// ==> Icons such as .io
 using Prism.Ioc;
 using Prism.Unity;
 using System.ComponentModel;

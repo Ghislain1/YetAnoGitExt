@@ -12,10 +12,12 @@
     Height="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:ShellWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
+   Icon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
+    TitleBarIcon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
     mc:Ignorable="d">
-  
-  
-  
-  
-  <Button Style="{StaticResource  WindowButtonStyle}" />
+
+
+
+
+    <Button Style="{StaticResource WindowButtonStyle}" />
 </controls:WindowExt>

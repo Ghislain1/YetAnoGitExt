@@ -5,26 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>   
     <UseWPF>true</UseWPF>
     <RepositoryUrl>https://github.com/Ghislain1/YetAnoGitExt</RepositoryUrl>  
-    <RepositoryType>git</RepositoryType>    
+    <RepositoryType>git</RepositoryType>  
+    <AssemblyVersion>2024.0.0.0</AssemblyVersion>  
+    <FileVersion>2024.0.0.0</FileVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
