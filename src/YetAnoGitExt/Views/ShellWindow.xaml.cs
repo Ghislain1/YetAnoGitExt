@@ -6,7 +6,7 @@
 //  writing by an officer of Ghis. All Rights Reserved.
 // </copyright>
 
-namespace YetAnoGitExt;
+namespace YetAnoGitExt.Views;
 
 
 using System.Text;

@@ -25,13 +25,18 @@ public class ShellWindowViewModel : BindableBase
     private string workingDirectory = "C:\\git\\ZoeProg";
     private string revisionFilter = "--max-count=100000 --exclude=refs/notes/commits --all";
 
- 
+
     public string WorkingDirectory
     {
         get => this.workingDirectory;
         set => this.SetProperty(ref this.workingDirectory, value);
     }
     private ObservableCollection<GitRevision> gitRevisionCollection = null!;
+
+    public LeftSideViewModel LeftSideViewModel { get; set; }
+
+
+
     public ObservableCollection<GitRevision> GitRevisionCollection
     {
         get => this.gitRevisionCollection;
@@ -41,6 +46,7 @@ public class ShellWindowViewModel : BindableBase
     public ShellWindowViewModel()
     {
         this.gitRevisionService = new GitRevisionService();
+        this.LeftSideViewModel = new LeftSideViewModel();
 
         this.LoadDataAsync();
     }
@@ -54,5 +60,8 @@ public class ShellWindowViewModel : BindableBase
         var items = await gitRevisionService.GetLogAsync(revisionFilter, cancellationTokenSource.Token, this.gitFullPathExe, this.workingDirectory, arguments, outputEncoding);
         this.GitRevisionCollection = new ObservableCollection<GitRevision>(items);
 
+
     }
+
+
 }

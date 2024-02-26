@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using YetAnoGitExt.Views;
 
 /// <summary>
 /// Interaction logic for App.xaml
