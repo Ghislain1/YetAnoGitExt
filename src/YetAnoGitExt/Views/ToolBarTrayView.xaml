@@ -16,7 +16,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />-->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -37,19 +37,14 @@
         <Button Style="{StaticResource WindowButtonStyle}">
             <materialDesign:PackIcon Kind="Grid" Style="{StaticResource WindowButtonIconStyle}" />
         </Button>
-      <!--Nice Popup Box-->
-        <Button Style="{StaticResource WindowButtonStyle}">
-            <materialDesign:PopupBox
-                Grid.Row="1"
-                Padding="2,0,2,0"
-             
-                Style="{StaticResource MaterialDesignToolForegroundPopupBox}">
-                <StackPanel>
-                    <Button Content="More" />
-                    <Button Content="Options" />
-                </StackPanel>
-            </materialDesign:PopupBox>
-        </Button>
+        <!--  Nice Popup Box  -->
+        <materialDesign:PopupBox Padding="2,0,2,0" Style="{StaticResource WindowPopupIconStyle}" PopupVerticalOffset="0">
+            <StackPanel>
+                <Button Content="More" />
+                <Button Content="Options" />
+            </StackPanel>
+        </materialDesign:PopupBox>
+        <!--</Button>-->
         <Border
             Width="1"
             Margin="8,4,8,4"
