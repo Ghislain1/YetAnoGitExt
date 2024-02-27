@@ -36,8 +36,41 @@
     </controls:WindowExt.TitleTemplate>
 
 
+    <materialDesign:DrawerHost
+        x:Name="DrawerHost"
+        Margin="4"
+        BorderBrush="{DynamicResource MaterialDesignDivider}"
+        BorderThickness="2"
+        BottomDrawerCornerRadius="20 20 0 0"
+        IsLeftDrawerOpen="True"
+        OpenMode="Standard">
 
-    <ScrollViewer
+        <!--<materialDesign:DrawerHost.Style>
+      <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding IsChecked, ElementName=BackgroundToggle}" Value="True">
+            <Setter Property="OverlayBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </materialDesign:DrawerHost.Style>-->
+
+        <materialDesign:DrawerHost.LeftDrawerContent>
+            <!--  Left Side Content  -->
+            <views:LeftSideView
+                Grid.Row="0"
+                Grid.Column="0"
+                MinWidth="20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"                
+                DataContext="{Binding LeftSideViewModel}" />
+
+        </materialDesign:DrawerHost.LeftDrawerContent>
+    </materialDesign:DrawerHost>
+
+
+
+    <!--<ScrollViewer
         Padding="16"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
@@ -55,15 +88,7 @@
                 <RowDefinition Height="10" />
             </Grid.RowDefinitions>
 
-            <!--  Left Side Content  -->
-            <views:LeftSideView
-                Grid.Row="0"
-                Grid.Column="0"
-                MinWidth="20"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Stretch"
-                Background="Gray"
-                DataContext="{Binding LeftSideViewModel}" />
+
             <GridSplitter
                 Grid.Row="0"
                 Grid.Column="0"
@@ -77,7 +102,7 @@
 
 
         </Grid>
-    </ScrollViewer>
+    </ScrollViewer>-->
 
 
 

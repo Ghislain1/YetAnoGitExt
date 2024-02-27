@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YetAnoGitExt.Core;
 using YetAnoGitExt.Core.Models;
+using YetAnoGitExt.Core.Services;
 
 public class ShellWindowViewModel : BindableBase
 {
@@ -47,7 +48,6 @@ public class ShellWindowViewModel : BindableBase
     {
         this.gitRevisionService = new GitRevisionService();
         this.LeftSideViewModel = new LeftSideViewModel();
-
         this.LoadDataAsync();
     }
 

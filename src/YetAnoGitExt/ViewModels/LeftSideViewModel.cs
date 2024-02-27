@@ -1,5 +1,6 @@
 ﻿namespace YetAnoGitExt.ViewModels;
 
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class LeftSideViewModel
+public class LeftSideViewModel : BindableBase
 {
 
     public ObservableCollection<SelectableViewModel> Items { get; set; }
@@ -25,22 +26,22 @@ public class LeftSideViewModel
             new SelectableViewModel
             {
                 Code = 'M',
-                Name = "Material Design",
-                Description = "Material Design in XAML Toolkit",
-                Kind="Grid"
+                Name = "History",
+                Description = "View Branch History",
+                Kind="History"
             },
             new SelectableViewModel
             {
                 Code = 'D',
-                Name = "Dragablz",
-                Description = "Dragablz Tab Control",
-                Kind = "Fries"
+                Name = "Branch",
+                Description = "Manage Branches",
+                Kind = "DirectionsFork"
             },
             new SelectableViewModel
             {
                 Code = 'P',
-                Name = "Predator",
-                Description = "If it bleeds, we can kill it",
+                Name = "Remote",
+                Description = "Manage Remotes",
                 Kind = "AcUnit"
             },
                new SelectableViewModel
