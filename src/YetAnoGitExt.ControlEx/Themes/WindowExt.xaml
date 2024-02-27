@@ -229,9 +229,15 @@
         <Setter Property="BorderForegroundBrush" Value="{DynamicResource PrimaryHueDarkForegroundBrush}" />
         <Setter Property="FontFamily" Value="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" />
         <Setter Property="FadeContentIfInactive" Value="True" />
-        <Setter Property="MinWidth" Value="128" />
-        <Setter Property="MinHeight" Value="128" />
-        <Setter Property="TitleBarIcon" Value="{Binding Path=Icon, RelativeSource={RelativeSource Self}}" />
+ 
+    <Setter Property="FontFamily" Value="{wpf:NotoFont}" />
+    <Setter Property="TextElement.FontSize" Value="14" />
+    <Setter Property="TextElement.FontWeight" Value="Regular" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesign.Brush.Foreground}" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+    <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+      
+    <Setter Property="TitleBarIcon" Value="{Binding Path=Icon, RelativeSource={RelativeSource Self}}" />
         <Setter Property="TitleTemplate">
             <Setter.Value>
                 <DataTemplate>

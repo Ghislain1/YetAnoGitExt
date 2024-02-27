@@ -9,50 +9,52 @@ using System.Text;
 using System.Threading.Tasks;
 using YetAnoGitExt.Core;
 using YetAnoGitExt.Core.Models;
+using YetAnoGitExt.Core.Services;
+using YetAnoGitExt.ViewModels.History;
 
 public class LeftSideViewModel : BindableBase
 {
 
-    public ObservableCollection<SelectableViewModel> Items { get; set; }
+    public ObservableCollection<ISelectableViewModel> Items { get; set; }
 
     private readonly IGitRevisionService gitRevisionService;
     public LeftSideViewModel(IGitRevisionService gitRevisionService)
     {
         this.gitRevisionService = gitRevisionService;
-        this.Items = CreateData();
+        this.Items = CreateData(gitRevisionService);
     }
-    private SelectableViewModel selectableViewModel;
-    public SelectableViewModel SelectableViewModel
+    private ISelectableViewModel selectableViewModel;
+    public ISelectableViewModel SelectableViewModel
     {
         get => this.selectableViewModel;
         set => this.SetProperty(ref this.selectableViewModel, value);
     }
-    private static ObservableCollection<SelectableViewModel> CreateData()
+    private static ObservableCollection<ISelectableViewModel> CreateData(IGitRevisionService gitRevisionService)
     {
-        return new ObservableCollection<SelectableViewModel>
+        return new ObservableCollection<ISelectableViewModel>
         {
-            new SelectableViewModel
+            new HistoryViewModel(gitRevisionService)
             {
                 Code = 'M',
                 Name = "History",
                 Description = "View Branch History",
                 Kind="History"
             },
-            new SelectableViewModel
+           new HistoryViewModel(gitRevisionService)
             {
                 Code = 'D',
                 Name = "Branch",
                 Description = "Manage Branches",
                 Kind = "DirectionsFork"
             },
-            new SelectableViewModel
+           new HistoryViewModel(gitRevisionService)
             {
                 Code = 'P',
                 Name = "Remote",
                 Description = "Manage Remotes",
                 Kind = "AcUnit"
             },
-               new SelectableViewModel
+         new HistoryViewModel(gitRevisionService)
             {
                 Code = 'P',
                 Name = "Users",
@@ -60,7 +62,7 @@ public class LeftSideViewModel : BindableBase
                Kind = "Account"
             }
                ,
-                  new SelectableViewModel
+           new HistoryViewModel(gitRevisionService)
             {
                 Code = 'P',
                 Name = "Teams",

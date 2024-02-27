@@ -19,9 +19,10 @@
     Icon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
     TitleBarIcon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
     mc:Ignorable="d">
+  
     <controls:WindowExt.Resources>
         <DataTemplate DataType="{x:Type history2:HistoryViewModel}">
-            <history1:HistoryView />
+            <history1:HistoryView  />
         </DataTemplate>
     </controls:WindowExt.Resources>
 
@@ -62,7 +63,8 @@
                 DataContext="{Binding LeftSideViewModel}" />
         </materialDesign:DrawerHost.LeftDrawerContent>
 
-        <TextBlock Text="{Binding LeftSideViewModel.SelectableViewModel}" />
+    
+    <ContentControl Content="{Binding LeftSideViewModel.SelectableViewModel}"  />
 
-    </materialDesign:DrawerHost>
+  </materialDesign:DrawerHost>
 </controls:WindowExt>

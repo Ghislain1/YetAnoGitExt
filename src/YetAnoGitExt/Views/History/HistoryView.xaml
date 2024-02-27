@@ -9,7 +9,46 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-  <Grid>
-   
-  </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="32,0,0,0"
+            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+            Text="{Binding Name}" />
+
+        <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+            ItemsSource="{Binding GitRevisionCollection}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Graph}" Header="Graph" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Guid}" Header="ID" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Author}" Header="Author" />
+          <GridViewColumn DisplayMemberBinding="{Binding CommitDate}" Header="Date" />
+          <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Message" />
+          <GridViewColumn Header="Options">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Width="100">
+                                    <ComboBoxItem Content="Test" />
+                                    <ComboBoxItem Content="Test2" />
+                                    <ComboBoxItem Content="Test3" />
+                                </ComboBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </UserControl>
