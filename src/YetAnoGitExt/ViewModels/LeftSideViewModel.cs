@@ -7,18 +7,26 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YetAnoGitExt.Core;
+using YetAnoGitExt.Core.Models;
 
 public class LeftSideViewModel : BindableBase
 {
 
     public ObservableCollection<SelectableViewModel> Items { get; set; }
 
-
-    public LeftSideViewModel()
+    private readonly IGitRevisionService gitRevisionService;
+    public LeftSideViewModel(IGitRevisionService gitRevisionService)
     {
+        this.gitRevisionService = gitRevisionService;
         this.Items = CreateData();
     }
-
+    private SelectableViewModel selectableViewModel;
+    public SelectableViewModel SelectableViewModel
+    {
+        get => this.selectableViewModel;
+        set => this.SetProperty(ref this.selectableViewModel, value);
+    }
     private static ObservableCollection<SelectableViewModel> CreateData()
     {
         return new ObservableCollection<SelectableViewModel>

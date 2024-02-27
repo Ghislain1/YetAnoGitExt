@@ -8,22 +8,20 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+
+
   <ItemGroup>
-    <None Remove="Images\Icons\TitleBarIcon.ico" />
-  </ItemGroup>
-
-  <ItemGroup> 
-
     <Content Include="Images\Icons\TitleBarIcon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    
+    </Content>    
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
+
+ 
 
   <ItemGroup>
     <ProjectReference Include="..\YetAnoGitExt.ControlEx\YetAnoGitExt.ControlExt.csproj" />

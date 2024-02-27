@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:YetAnoGitExt.ControlExt.Controls;assembly=YetAnoGitExt.ControlExt"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:history1="clr-namespace:YetAnoGitExt.Views.History"
+    xmlns:history2="clr-namespace:YetAnoGitExt.ViewModels.History"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -17,6 +19,11 @@
     Icon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
     TitleBarIcon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
     mc:Ignorable="d">
+    <controls:WindowExt.Resources>
+        <DataTemplate DataType="{x:Type history2:HistoryViewModel}">
+            <history1:HistoryView />
+        </DataTemplate>
+    </controls:WindowExt.Resources>
 
     <controls:WindowExt.TitleTemplate>
         <DataTemplate>
@@ -35,7 +42,6 @@
         </DataTemplate>
     </controls:WindowExt.TitleTemplate>
 
-
     <materialDesign:DrawerHost
         x:Name="DrawerHost"
         Margin="4"
@@ -45,16 +51,6 @@
         IsLeftDrawerOpen="True"
         OpenMode="Standard">
 
-        <!--<materialDesign:DrawerHost.Style>
-      <Style TargetType="materialDesign:DrawerHost" BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
-        <Style.Triggers>
-          <DataTrigger Binding="{Binding IsChecked, ElementName=BackgroundToggle}" Value="True">
-            <Setter Property="OverlayBackground" Value="{DynamicResource PrimaryHueMidBrush}" />
-          </DataTrigger>
-        </Style.Triggers>
-      </Style>
-    </materialDesign:DrawerHost.Style>-->
-
         <materialDesign:DrawerHost.LeftDrawerContent>
             <!--  Left Side Content  -->
             <views:LeftSideView
@@ -62,48 +58,11 @@
                 Grid.Column="0"
                 MinWidth="20"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Stretch"                
+                VerticalAlignment="Stretch"
                 DataContext="{Binding LeftSideViewModel}" />
-
         </materialDesign:DrawerHost.LeftDrawerContent>
+
+        <TextBlock Text="{Binding LeftSideViewModel.SelectableViewModel}" />
+
     </materialDesign:DrawerHost>
-
-
-
-    <!--<ScrollViewer
-        Padding="16"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
-        HorizontalScrollBarVisibility="Auto"
-        VerticalScrollBarVisibility="Auto">
-        <Grid VerticalAlignment="Top" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="50" />
-                <ColumnDefinition Width="8" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="4" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="10" />
-            </Grid.RowDefinitions>
-
-
-            <GridSplitter
-                Grid.Row="0"
-                Grid.Column="0"
-                Width="2"
-                HorizontalAlignment="Right" />
-            <Grid Grid.Row="0" Grid.Column="2" Height="750" >
-                <TextBlock FontSize="50" Text="conten of side bar " />
-
-            </Grid>
-
-
-
-        </Grid>
-    </ScrollViewer>-->
-
-
-
 </controls:WindowExt>

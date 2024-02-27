@@ -1,5 +1,4 @@
-﻿namespace YetAnoGitExt.Views;
-
+﻿namespace YetAnoGitExt.Views.History;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 /// <summary>
-/// Interaction logic for LeftSideView.xaml
+/// Interaction logic for HistoryView.xaml
 /// </summary>
-public partial class LeftSideView : UserControl
+public partial class HistoryView: UserControl
 {
-    public LeftSideView()
+    public HistoryView()
     {
         this.InitializeComponent();
     }

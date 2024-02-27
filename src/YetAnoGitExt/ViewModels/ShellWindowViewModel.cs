@@ -47,7 +47,7 @@ public class ShellWindowViewModel : BindableBase
     public ShellWindowViewModel()
     {
         this.gitRevisionService = new GitRevisionService();
-        this.LeftSideViewModel = new LeftSideViewModel();
+        this.LeftSideViewModel = new LeftSideViewModel(this.gitRevisionService);
         this.LoadDataAsync();
     }
 
