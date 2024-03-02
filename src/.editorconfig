@@ -54,11 +54,20 @@ tab_width = 2
 # C# Files
 [*.cs]
 indent_style = space
-indent_size = 4
+indent_size = 14
 tab_width = 4
 
 end_of_line = crlf
 insert_final_newline = false
+
+#  GHIS- CSharp formatting rules:
+csharp_new_line_before_open_brace = methods, properties, control_blocks, types
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_between_query_expression_clauses = true
 
 #### .NET Coding Conventions ####
 
@@ -68,7 +77,10 @@ file_header_template = <copyright company="Ghislain One Inc.">\n Copyright (c) G
 
 # 'using' directive preferences
 
-csharp_using_directive_placement = inside_namespace:warning
+csharp_using_directive_placement = inside_namespace:error
+
+# Ghis (C# formatting options)
+csharp_new_line_before_open_brace =true
 
 # var preferences
 
@@ -118,6 +130,7 @@ csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
 csharp_style_prefer_not_pattern = true:suggestion
 csharp_style_prefer_pattern_matching = true:silent
 csharp_style_prefer_switch_expression = true:suggestion
+
 
 # Language keywords vs BCL types preferences
 
@@ -261,62 +274,9 @@ dotnet_naming_style.begins_with_i.required_suffix =
 dotnet_naming_style.begins_with_i.word_separator =
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
-# ReSharper properties
+ 
 
-resharper_align_multiline_array_and_object_initializer = true
-resharper_blank_lines_around_single_line_auto_property = 1
-resharper_blank_lines_around_single_line_property = 1
-resharper_csharp_blank_lines_around_single_line_field = 1
-resharper_csharp_blank_lines_around_single_line_invocable = 1
-resharper_csharp_keep_blank_lines_in_code = 1
-resharper_csharp_keep_blank_lines_in_declarations = 1
-resharper_csharp_max_line_length = 160
-resharper_csharp_naming_rule.method_property_event = AaBb:do_not_check
-resharper_csharp_new_line_before_while = true
-resharper_csharp_stick_comment = false
-resharper_csharp_wrap_after_declaration_lpar = true
-resharper_csharp_wrap_after_invocation_lpar = true
-resharper_csharp_wrap_arguments_style = chop_if_long
-resharper_csharp_wrap_before_binary_opsign = true
-resharper_csharp_wrap_extends_list_style = chop_if_long
-resharper_csharp_wrap_parameters_style = chop_if_long
-resharper_default_exception_variable_name = 
-resharper_event_handler_pattern_long = $object$_On$event$
-resharper_instance_members_qualify_members = none, field, property, event, method, all
-resharper_keep_existing_expr_member_arrangement = false
-resharper_keep_existing_initializer_arrangement = false
-resharper_keep_existing_linebreaks = false
-resharper_place_accessorholder_attribute_on_same_line = false
-resharper_place_constructor_initializer_on_same_line = false
-resharper_place_field_attribute_on_same_line = false
-resharper_place_simple_accessor_on_single_line = false
-resharper_place_simple_embedded_statement_on_same_line = true
-resharper_place_type_constraints_on_same_line = false
-resharper_qualified_using_at_nested_scope = true
-resharper_space_within_single_line_array_initializer_braces = true
-resharper_static_members_qualify_members = none, field, property, event, method
-resharper_wrap_before_first_type_parameter_constraint = true
-
-# ReSharper inspection severities
-
-resharper_arrange_this_qualifier_highlighting = hint
-resharper_arrange_type_member_modifiers_highlighting = hint
-resharper_arrange_type_modifiers_highlighting = hint
-resharper_assign_null_to_not_null_attribute_highlighting = hint
-resharper_built_in_type_reference_style_for_member_access_highlighting = hint
-resharper_built_in_type_reference_style_highlighting = hint
-resharper_check_namespace_highlighting = hint
-resharper_convert_if_statement_to_conditional_ternary_expression_highlighting = hint
-resharper_convert_to_constant_global_highlighting = none
-resharper_convert_to_constant_local_highlighting = none
-resharper_inconsistent_naming_highlighting = none
-resharper_possible_null_reference_exception_highlighting = hint
-resharper_redundant_name_qualifier_highlighting = none
-resharper_specify_a_culture_in_string_conversion_explicitly_highlighting = suggestion
-resharper_suggest_var_or_type_built_in_types_highlighting = hint
-resharper_suggest_var_or_type_elsewhere_highlighting = hint
-resharper_suggest_var_or_type_simple_types_highlighting = hint
-resharper_use_string_interpolation_highlighting = hint
+ 
 
 #
 # Microsoft.CodeAnalysis.CSharp
@@ -943,7 +903,7 @@ dotnet_diagnostic.SA1636.severity = none
 dotnet_diagnostic.SA1637.severity = none
 
 # SA1638: FileHeaderFileNameDocumentationMustMatchFileName
-dotnet_diagnostic.SA1638.severity = none
+dotnet_diagnostic.SA1638.severity = warning
 
 # SA1641: FileHeaderCompanyNameTextMustMatch
 dotnet_diagnostic.SA1641.severity = none

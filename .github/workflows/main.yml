@@ -40,7 +40,9 @@ jobs:
         # Testing your code
       - name: Testing Ur Code(with the dotnet CLI on UI-dev.sln)
         run: |
-          dir      
+          dir 
+          cd tests
+          cd UnitTests     
           dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
      
       # Packaging workflow data as artifacts (to save log files, core dumps, test results, or screenshots)
