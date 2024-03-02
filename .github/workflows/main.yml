@@ -34,6 +34,7 @@ jobs:
       - name: Building Ur Code
         run: |
           dir
+          cd src
           dotnet build
         
         # Testing your code
