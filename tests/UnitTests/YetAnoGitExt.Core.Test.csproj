@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RevisionViewer\RevisionViewer.csproj" />
+   <!-- <ProjectReference Include="..\RevisionViewer\RevisionViewer.csproj" />  -->
     </ItemGroup>
 
 </Project>
