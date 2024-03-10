@@ -28,25 +28,51 @@
         <ListView
             Grid.Row="1"
             Grid.Column="0"
-            ItemsSource="{Binding GitRevisionCollection}">
+            ItemsSource="{Binding GitRevisionCollection}"
+            SelectedItem="{Binding SelectedGitRevision}">
+
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Graph}" Header="Graph" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Guid}" Header="ID" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Author}" Header="Author" />
-          <GridViewColumn DisplayMemberBinding="{Binding CommitDate}" Header="Date" />
-          <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Message" />
-          <GridViewColumn Header="Options">
+
+                    <GridViewColumn Header="Graph">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox Width="100">
-                                    <ComboBoxItem Content="Test" />
-                                    <ComboBoxItem Content="Test2" />
-                                    <ComboBoxItem Content="Test3" />
-                                </ComboBox>
+                                <Border BorderBrush="DarkRed" BorderThickness="0">
+                                    <Canvas
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        ToolTip="{Binding}">
+                                        <Ellipse
+                                            x:Name="GraphEllipse"
+                                            Width="15"
+                                            Height="15"
+                                            Stroke="Black"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            x:Name="GraphLine"
+                                            Margin="7.5,0,0,0"
+                                            Stroke="Black"
+                                            StrokeThickness="3.5"
+                                            X1="0"
+                                            X2="0"
+                                            Y1="0"
+                                            Y2="40" />
+                                    </Canvas>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsLastCommitt}" Value="True">
+                                        <Setter TargetName="GraphEllipse" Property="Fill" Value="Black" />
+
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Guid}" Header="ID" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Author}" Header="Author" />
+                    <GridViewColumn DisplayMemberBinding="{Binding CommitDate}" Header="Date" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Subject}" Header="Message" />
+
                 </GridView>
             </ListView.View>
         </ListView>

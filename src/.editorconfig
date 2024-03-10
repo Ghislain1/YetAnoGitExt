@@ -80,7 +80,7 @@ file_header_template = <copyright company="Ghislain One Inc.">\n Copyright (c) G
 csharp_using_directive_placement = inside_namespace:error
 
 # Ghis (C# formatting options)
-csharp_new_line_before_open_brace =true
+csharp_new_line_before_open_brace = true
 
 # var preferences
 

@@ -39,6 +39,7 @@ public class HistoryViewModel : BindableBase, ISelectableViewModel
         var outputEncoding = Encoding.UTF8;
         var items = await gitRevisionService.GetLogAsync(revisionFilter, cancellationTokenSource.Token, this.gitFullPathExe, this.workingDirectory, arguments, outputEncoding);
         this.GitRevisionCollection = new ObservableCollection<GitRevision>(items);
+        this.GitRevisionCollection.First().IsLastCommitt = true;
     }
 
     public string WorkingDirectory
@@ -51,9 +52,18 @@ public class HistoryViewModel : BindableBase, ISelectableViewModel
         get => this.gitRevisionCollection;
         set => this.SetProperty(ref this.gitRevisionCollection, value);
     }
-
-
-
+    private GitRevision selectedGitRevision;
+    public GitRevision SelectedGitRevision
+    {
+        get => this.selectedGitRevision;
+        set
+        {
+            if (this.SetProperty(ref this.selectedGitRevision, value))
+            {
+               // value.IsLastCommitt= true;
+            }
+        }
+    }
     public bool IsSelected
     {
         get => this.isSelected;
