@@ -16,8 +16,7 @@ using System.Threading.Tasks;
 public class GitRevision : IGitItem {
 
 
-              public GitRevision(ObjectId objectId)
-                            {
+              public GitRevision(ObjectId objectId) {
                             this.ObjectId = objectId;
               }
               public IReadOnlyList<ObjectId>? ParentIds { get; set; }

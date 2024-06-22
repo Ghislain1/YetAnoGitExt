@@ -19,15 +19,13 @@ using YetAnoGitExt.Core;
 using YetAnoGitExt.Core.Models;
 using YetAnoGitExt.Core.Services;
 
-public class ShellWindowViewModel : BindableBase
-{
-    private IGitRevisionService gitRevisionService;
-    public LeftSideViewModel LeftSideViewModel { get; set; }
-    public ShellWindowViewModel()
-    {
-        this.gitRevisionService = new GitRevisionService();
-        this.LeftSideViewModel = new LeftSideViewModel(this.gitRevisionService);
+public class ShellWindowViewModel : BindableBase {
+              private IGitRevisionService gitRevisionService;
+              public LeftSideViewModel LeftSideViewModel { get; set; }
+              public ShellWindowViewModel() {
+                            this.gitRevisionService = new GitRevisionService();
+                            this.LeftSideViewModel = new LeftSideViewModel(this.gitRevisionService);
 
-    }
+              }
 
 }

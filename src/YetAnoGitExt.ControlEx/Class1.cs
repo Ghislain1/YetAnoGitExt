@@ -6,10 +6,8 @@
 //  writing by an officer of Ghis. All Rights Reserved.
 // </copyright>
 
-namespace YetAnoGitExt.ControlEx
-{
-    public class Class1
-    {
+namespace YetAnoGitExt.ControlEx {
+              public class Class1 {
 
-    }
+              }
 }

@@ -15,20 +15,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface IGitCommandRunner
-{
-    //void RunDetached(
-    //     ArgumentString arguments = default,
-    //     bool createWindow = false,
-    //     bool redirectInput = false,
-    //     bool redirectOutput = false,
-    //     Encoding? outputEncoding = null);
+public interface IGitCommandRunner {
+              //void RunDetached(
+              //     ArgumentString arguments = default,
+              //     bool createWindow = false,
+              //     bool redirectInput = false,
+              //     bool redirectOutput = false,
+              //     Encoding? outputEncoding = null);
 
-    //IProcess RunDetached(
-    //CancellationToken cancellationToken,
-    //ArgumentString arguments = default,
-    //bool createWindow = false,
-    //bool redirectInput = false,
-    //bool redirectOutput = false,
-    //Encoding? outputEncoding = null);
+              //IProcess RunDetached(
+              //CancellationToken cancellationToken,
+              //ArgumentString arguments = default,
+              //bool createWindow = false,
+              //bool redirectInput = false,
+              //bool redirectOutput = false,
+              //Encoding? outputEncoding = null);
 }

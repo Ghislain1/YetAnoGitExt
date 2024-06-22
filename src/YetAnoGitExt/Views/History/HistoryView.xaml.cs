@@ -18,10 +18,8 @@ using System.Windows.Shapes;
 /// <summary>
 /// Interaction logic for HistoryView.xaml
 /// </summary>
-public partial class HistoryView : UserControl
-{
-    public HistoryView()
-    {
-        this.InitializeComponent();
-    }
+public partial class HistoryView : UserControl {
+              public HistoryView() {
+                            this.InitializeComponent();
+              }
 }

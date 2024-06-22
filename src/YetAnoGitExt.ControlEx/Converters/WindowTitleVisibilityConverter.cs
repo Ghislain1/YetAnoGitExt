@@ -18,41 +18,33 @@ using System.Windows;
 /// <summary>
 /// Converts a <see cref="WindowStyle" /> of a window into a <see cref="Visibility" /> of the whole title bar.
 /// </summary>
-public class WindowTitleVisibilityConverter : IMultiValueConverter
-{
-    /// <summary>
-    /// Creates a new <see cref="WindowTitleVisibilityConverter" />.
-    /// </summary>
-    public WindowTitleVisibilityConverter() { }
+public class WindowTitleVisibilityConverter : IMultiValueConverter {
+              /// <summary>
+              /// Creates a new <see cref="WindowTitleVisibilityConverter" />.
+              /// </summary>
+              public WindowTitleVisibilityConverter() { }
 
-    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-    {
-        try
-        {
-            if (values != null && values.Length >= 1)
-            {
-                WindowStyle windowStyle = (WindowStyle)values[0];
+              public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
+                            try {
+                                          if (values != null && values.Length >= 1) {
+                                                        WindowStyle windowStyle = (WindowStyle)values[0];
 
-                if (windowStyle != WindowStyle.None)
-                {
-                    return Visibility.Visible;
-                }
-                else
-                {
-                    return Visibility.Collapsed;
-                }
-            }
-        }
-        catch (Exception)
-        {
-            // use the default return value below
-        }
+                                                        if (windowStyle != WindowStyle.None) {
+                                                                      return Visibility.Visible;
+                                                        }
+                                                        else {
+                                                                      return Visibility.Collapsed;
+                                                        }
+                                          }
+                            }
+                            catch (Exception) {
+                                          // use the default return value below
+                            }
 
-        return Visibility.Visible;
-    }
+                            return Visibility.Visible;
+              }
 
-    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
+              public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
+                            throw new NotImplementedException();
+              }
 }

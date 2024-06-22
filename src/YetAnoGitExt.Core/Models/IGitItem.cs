@@ -8,9 +8,8 @@
 
 namespace YetAnoGitExt.Core.Models;
 
-public interface IGitItem
-{
-    ObjectId? ObjectId { get; }
+public interface IGitItem {
+              ObjectId? ObjectId { get; }
 
-    string? Guid { get; }
+              string? Guid { get; }
 }

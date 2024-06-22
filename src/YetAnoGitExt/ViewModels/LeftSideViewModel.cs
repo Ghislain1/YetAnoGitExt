@@ -12,27 +12,23 @@ using YetAnoGitExt.Core.Models;
 using YetAnoGitExt.Core.Services;
 using YetAnoGitExt.ViewModels.History;
 
-public class LeftSideViewModel : BindableBase
-{
+public class LeftSideViewModel : BindableBase {
 
-    public ObservableCollection<ISelectableViewModel> Items { get; set; }
+              public ObservableCollection<ISelectableViewModel> Items { get; set; }
 
-    private readonly IGitRevisionService gitRevisionService;
-    public LeftSideViewModel(IGitRevisionService gitRevisionService)
-    {
-        this.gitRevisionService = gitRevisionService;
-        this.Items = CreateData(gitRevisionService);
-    }
-    private ISelectableViewModel selectableViewModel;
-    public ISelectableViewModel SelectableViewModel
-    {
-        get => this.selectableViewModel;
-        set => this.SetProperty(ref this.selectableViewModel, value);
-    }
-    private static ObservableCollection<ISelectableViewModel> CreateData(IGitRevisionService gitRevisionService)
-    {
-        return new ObservableCollection<ISelectableViewModel>
-        {
+              private readonly IGitRevisionService gitRevisionService;
+              public LeftSideViewModel(IGitRevisionService gitRevisionService) {
+                            this.gitRevisionService = gitRevisionService;
+                            this.Items = CreateData(gitRevisionService);
+              }
+              private ISelectableViewModel selectableViewModel;
+              public ISelectableViewModel SelectableViewModel {
+                            get => this.selectableViewModel;
+                            set => this.SetProperty(ref this.selectableViewModel, value);
+              }
+              private static ObservableCollection<ISelectableViewModel> CreateData(IGitRevisionService gitRevisionService) {
+                            return new ObservableCollection<ISelectableViewModel>
+                            {
             new HistoryViewModel(gitRevisionService)
             {
                 Code = 'M',
@@ -70,5 +66,5 @@ public class LeftSideViewModel : BindableBase
                  Kind = "Teams"
             }
         };
-    }
+              }
 }

@@ -1,7 +1,7 @@
 # What's is this?
 **Yet Another Git Extension Tool** (YetAnoGit Extension) is a user friendly interface to manange git project. It is a WPF Application based on .NET 8 and written in C# language.
 
-<img src="./assets/Imgs/Mainpage.jpg" alt="The Main page YetAnoGit " style="height: 800px; width: 1000px;"/>
+<img src="./assets/Imgs/Mainpage.jpg" alt="The Main page YetAnoGit " style="height: auto; width: auto;"/>
 
 # Main features
 - Manage branches

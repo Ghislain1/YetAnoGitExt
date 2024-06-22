@@ -24,17 +24,14 @@ using YetAnoGitExt.ControlExt.Controls;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class ShellWindow : WindowExt
-{
-    public ShellWindow()
-    {
-        this.InitializeComponent();
-        this.Loaded += this.ShellWindow_Loaded;
-    }
+public partial class ShellWindow : WindowExt {
+              public ShellWindow() {
+                            this.InitializeComponent();
+                            this.Loaded += this.ShellWindow_Loaded;
+              }
 
-    private void ShellWindow_Loaded(object sender, RoutedEventArgs e)
-    {
-        var sd = this.Style;
-        var rd = (ResourceDictionary)Application.LoadComponent(new Uri("/YetAnoGitExt.ControlExt;component/Themes/Generic.xaml", UriKind.Relative));
-    }
+              private void ShellWindow_Loaded(object sender, RoutedEventArgs e) {
+                            var sd = this.Style;
+                            var rd = (ResourceDictionary)Application.LoadComponent(new Uri("/YetAnoGitExt.ControlExt;component/Themes/Generic.xaml", UriKind.Relative));
+              }
 }

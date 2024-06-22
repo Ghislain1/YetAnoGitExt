@@ -15,42 +15,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class ArgumentBuilder : IEnumerable
-{
-    private readonly StringBuilder _arguments = new(capacity: 16);
-    public bool IsEmpty => _arguments.Length == 0;
+public class ArgumentBuilder : IEnumerable {
+              private readonly StringBuilder _arguments = new(capacity: 16);
+              public bool IsEmpty => _arguments.Length == 0;
 
-    public IEnumerator GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
+              public IEnumerator GetEnumerator() {
+                            throw new NotImplementedException();
+              }
 
-    public void Add(string? s)
-    {
-        if (string.IsNullOrWhiteSpace(s))
-        {
-            return;
-        }
+              public void Add(string? s) {
+                            if (string.IsNullOrWhiteSpace(s)) {
+                                          return;
+                            }
 
-        if (_arguments.Length != 0)
-        {
-            _arguments.Append(' ');
-        }
+                            if (_arguments.Length != 0) {
+                                          _arguments.Append(' ');
+                            }
 
-        _arguments.Append(s);
-    }
+                            _arguments.Append(s);
+              }
 
-    public void AddRange(IEnumerable<string> args)
-    {
-        args = args.Where(a => !string.IsNullOrEmpty(a));
-        foreach (string s in args)
-        {
-            Add(s);
-        }
-    }
+              public void AddRange(IEnumerable<string> args) {
+                            args = args.Where(a => !string.IsNullOrEmpty(a));
+                            foreach (string s in args) {
+                                          Add(s);
+                            }
+              }
 
-    public override string ToString()
-    {
-        return _arguments.ToString();
-    }
+              public override string ToString() {
+                            return _arguments.ToString();
+              }
 }

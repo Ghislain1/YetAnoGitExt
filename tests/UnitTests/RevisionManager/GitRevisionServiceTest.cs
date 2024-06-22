@@ -52,7 +52,7 @@ public class GitRevisionServiceTest
         builder.Append(levelString);
         builder.Append(item);
         builder.Append($"({item.GetType().Name})");
-               _logger.WriteLine(builder.ToString());
+        _logger.WriteLine(builder.ToString());
     }
 
 }
