@@ -1,4 +1,4 @@
-﻿<controls:WindowExt
+﻿<Window
     x:Class="YetAnoGitExt.Views.ShellWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -11,22 +11,21 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewmodels="clr-namespace:YetAnoGitExt.ViewModels"
     xmlns:views="clr-namespace:YetAnoGitExt.Views"
+    Style="{StaticResource MaterialDesignWindow}"
     Title="YetAnoGit Extension"
     Width="800"
     Height="450"
     d:DataContext="{d:DesignInstance Type=viewmodels:ShellWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Icon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
-    TitleBarIcon="pack://application:,,,/YetAnoGitExt;component/images/icons/TitleBarIcon.ico"
-    mc:Ignorable="d">
-  
-    <controls:WindowExt.Resources>
+   
+    mc:Ignorable="d">              
+    <Window.Resources>
         <DataTemplate DataType="{x:Type history2:HistoryViewModel}">
             <history1:HistoryView  />
         </DataTemplate>
-    </controls:WindowExt.Resources>
-
-    <controls:WindowExt.TitleTemplate>
+    </Window.Resources>
+    <!--<controls:WindowExt.TitleTemplate>
         <DataTemplate>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -41,8 +40,7 @@
 
             </Grid>
         </DataTemplate>
-    </controls:WindowExt.TitleTemplate>
-
+    </controls:WindowExt.TitleTemplate>-->
     <materialDesign:DrawerHost
         x:Name="DrawerHost"
         Margin="4"
@@ -67,4 +65,4 @@
     <ContentControl Content="{Binding LeftSideViewModel.SelectableViewModel}"  />
 
   </materialDesign:DrawerHost>
-</controls:WindowExt>
+</Window>
