@@ -19,7 +19,8 @@ using YetAnoGitExt.Core.Consts;
 using YetAnoGitExt.Core.Extensions;
 using YetAnoGitExt.Core.Models;
 
-public interface IGitRevisionService {
+public interface IGitRevisionService
+{
               List<GitRevision> GetLog(string revisionFilter, CancellationToken cancellationToken, string gitFullPathExe, string workingDirectory, string arguments, Encoding? outputEncoding = null);
               Task<List<GitRevision>> GetLogAsync(string revisionFilter, CancellationToken cancellationToken, string gitFullPathExe, string workingDirectory, string arguments, Encoding? outputEncoding = null);
 }

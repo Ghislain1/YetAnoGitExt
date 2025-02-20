@@ -15,7 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface IGitCommandRunner {
+public interface IGitCommandRunner
+{
               //void RunDetached(
               //     ArgumentString arguments = default,
               //     bool createWindow = false,

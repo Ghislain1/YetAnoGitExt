@@ -61,13 +61,15 @@ end_of_line = crlf
 insert_final_newline = false
 
 #  GHIS- CSharp formatting rules:
-csharp_new_line_before_open_brace = true
+csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
 csharp_new_line_before_members_in_object_initializers = true
 csharp_new_line_before_members_in_anonymous_types = true
 csharp_new_line_between_query_expression_clauses = true
+trim_trailing_whitespace = true
+insert_final_newline = true
 
 #### .NET Coding Conventions ####
 
@@ -80,7 +82,7 @@ file_header_template = <copyright company="Ghislain One Inc.">\n Copyright (c) G
 csharp_using_directive_placement = inside_namespace:error
 
 # Ghis (C# formatting options)
-csharp_new_line_before_open_brace = true
+csharp_new_line_before_open_brace = all
 
 # var preferences
 

@@ -13,10 +13,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-public class GitRevision : IGitItem {
+public class GitRevision : IGitItem
+{
 
 
-              public GitRevision(ObjectId objectId) {
+              public GitRevision(ObjectId objectId)
+              {
                             this.ObjectId = objectId;
               }
               public IReadOnlyList<ObjectId>? ParentIds { get; set; }
@@ -41,7 +43,8 @@ public class GitRevision : IGitItem {
               public override string ToString() => $"{this.ObjectId.ToShortString()}:{Subject} Paredts: {string.Join("- ", this.ParentIds)}";
               public ObjectId ObjectId { get; }
               string? _body;
-              public string? Body {
+              public string? Body
+              {
                             // Body is not stored by default for older commits to reduce memory usage
                             // Body do not have to be stored explicitly if same as subject and not multiline
                             get => _body ?? (!HasMultiLineMessage ? Subject : null);
@@ -49,7 +52,8 @@ public class GitRevision : IGitItem {
               }
               public string Guid => ObjectId.ToString();
 
-              public GitRevision Clone() {
+              public GitRevision Clone()
+              {
                             return (GitRevision)MemberwiseClone();
               }
 }

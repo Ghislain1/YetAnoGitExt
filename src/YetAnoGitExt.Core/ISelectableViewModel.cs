@@ -14,7 +14,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface ISelectableViewModel {
+public interface ISelectableViewModel
+{
               string? Name { get; set; }
               string? Description { get; set; }
               string? Kind { get; set; }

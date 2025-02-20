@@ -14,7 +14,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-internal static class Delimiters {
+internal static class Delimiters
+{
               public static readonly char[] LineFeed = { '\n' };
               public static readonly char[] LineAndVerticalFeed = { '\n', '\v' };
               public static readonly char[] Space = { ' ' };

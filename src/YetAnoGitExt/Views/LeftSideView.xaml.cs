@@ -18,8 +18,10 @@ using System.Windows.Shapes;
 /// <summary>
 /// Interaction logic for LeftSideView.xaml
 /// </summary>
-public partial class LeftSideView : UserControl {
-              public LeftSideView() {
+public partial class LeftSideView : UserControl
+{
+              public LeftSideView()
+              {
                             this.InitializeComponent();
               }
 }

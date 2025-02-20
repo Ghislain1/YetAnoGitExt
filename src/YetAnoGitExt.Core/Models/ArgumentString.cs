@@ -16,11 +16,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 [DebuggerDisplay("{" + nameof(Arguments) + "}")]
-public readonly struct ArgumentString {
+public readonly struct ArgumentString
+{
               public string? Arguments { get; }
               public int Length { get => Arguments?.Length ?? 0; }
 
-              private ArgumentString(string arguments) {
+              private ArgumentString(string arguments)
+              {
                             Arguments = arguments ?? throw new ArgumentNullException(nameof(arguments));
               }
 

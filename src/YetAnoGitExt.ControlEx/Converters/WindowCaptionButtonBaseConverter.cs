@@ -15,7 +15,8 @@ using System.Windows.Data;
 /// <summary>
 /// Base class for the converters controlling the visibility and enabled state of window caption buttons.
 /// </summary>
-public abstract class WindowCaptionButtonBaseConverter : IMultiValueConverter {
+public abstract class WindowCaptionButtonBaseConverter : IMultiValueConverter
+{
               /// <summary>
               /// Identifier for the minimize caption button.
               /// </summary>
@@ -38,7 +39,8 @@ public abstract class WindowCaptionButtonBaseConverter : IMultiValueConverter {
 
               public abstract object Convert(object[] values, Type targetType, object parameter, CultureInfo culture);
 
-              public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
+              public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+              {
                             return new[] { Binding.DoNothing };
 
               }

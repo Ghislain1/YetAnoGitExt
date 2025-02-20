@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class SelectableViewModel : BindableBase {
+public class SelectableViewModel : BindableBase
+{
               private bool isSelected;
               private string? name;
               private string? description;
@@ -18,37 +19,44 @@ public class SelectableViewModel : BindableBase {
               private string? files;
 
 
-              public bool IsSelected {
+              public bool IsSelected
+              {
                             get => this.isSelected;
                             set => this.SetProperty(ref this.isSelected, value);
               }
 
-              public char Code {
+              public char Code
+              {
                             get => this.code;
                             set => this.SetProperty(ref this.code, value);
               }
 
-              public string? Name {
+              public string? Name
+              {
                             get => this.name;
                             set => this.SetProperty(ref this.name, value);
               }
 
-              public string? Description {
+              public string? Description
+              {
                             get => this.description;
                             set => this.SetProperty(ref this.description, value);
               }
 
-              public double Numeric {
+              public double Numeric
+              {
                             get => this.numeric;
                             set => this.SetProperty(ref this.numeric, value);
               }
 
-              public string? Kind {
+              public string? Kind
+              {
                             get => this.kind;
                             set => this.SetProperty(ref this.kind, value);
               }
 
-              public string? Files {
+              public string? Files
+              {
                             get => this.files;
                             set => this.SetProperty(ref this.files, value);
               }

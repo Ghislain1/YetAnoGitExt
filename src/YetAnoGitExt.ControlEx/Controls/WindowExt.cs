@@ -20,7 +20,8 @@ using System.Windows.Media;
 /// <summary>
 /// Custom window class for a Material Design like styled window.
 /// </summary>
-public class WindowExt : Window {
+public class WindowExt : Window
+{
               private const string MinimizeButtonName = "minimizeButton";
               private const string MaximizeRestoreButtonName = "maximizeRestoreButton";
               private const string CloseButtonName = "closeButton";
@@ -35,12 +36,15 @@ public class WindowExt : Window {
               /// The color for the border and caption area background of the window.
               /// </summary>
               public Brush
-                            BorderBackgroundBrush {
-                            get {
+                            BorderBackgroundBrush
+              {
+                            get
+                            {
                                           return (Brush)GetValue(BorderBackgroundBrushProperty);
                             }
 
-                            set {
+                            set
+                            {
                                           SetValue(BorderBackgroundBrushProperty, value);
                             }
               }
@@ -54,12 +58,15 @@ public class WindowExt : Window {
               /// <summary>
               /// The forground color for the caption area of the window.
               /// </summary>
-              public Brush BorderForegroundBrush {
-                            get {
+              public Brush BorderForegroundBrush
+              {
+                            get
+                            {
                                           return (Brush)GetValue(BorderForegroundBrushProperty);
                             }
 
-                            set {
+                            set
+                            {
                                           SetValue(BorderForegroundBrushProperty, value);
                             }
               }
@@ -75,12 +82,15 @@ public class WindowExt : Window {
               /// Lets the content of the window fade out if the window is inactive.
               /// The default is true (enabled).
               /// </summary>
-              public bool FadeContentIfInactive {
-                            get {
+              public bool FadeContentIfInactive
+              {
+                            get
+                            {
                                           return (bool)GetValue(FadeContentIfInactiveProperty);
                             }
 
-                            set {
+                            set
+                            {
                                           SetValue(FadeContentIfInactiveProperty, value);
                             }
               }
@@ -94,12 +104,15 @@ public class WindowExt : Window {
               /// <summary>
               /// The template for the title bar. The default shows a <see cref="TextBlock" /> with the title.
               /// </summary>
-              public DataTemplate TitleTemplate {
-                            get {
+              public DataTemplate TitleTemplate
+              {
+                            get
+                            {
                                           return (DataTemplate)GetValue(TitleTemplateProperty);
                             }
 
-                            set {
+                            set
+                            {
                                           SetValue(TitleTemplateProperty, value);
                             }
               }
@@ -113,12 +126,15 @@ public class WindowExt : Window {
               /// <summary>
               /// The icon inside the window's title bar.
               /// </summary>
-              public ImageSource TitleBarIcon {
-                            get {
+              public ImageSource TitleBarIcon
+              {
+                            get
+                            {
                                           return (ImageSource)GetValue(TitleBarIconProperty);
                             }
 
-                            set {
+                            set
+                            {
                                           SetValue(TitleBarIconProperty, value);
                             }
               }
@@ -127,60 +143,72 @@ public class WindowExt : Window {
               private Button m_maximizeRestoreButton;
               private Button m_closeButton;
 
-              static WindowExt() {
+              static WindowExt()
+              {
                             DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowExt), new FrameworkPropertyMetadata(typeof(WindowExt)));
               }
 
               /// <summary>
               /// Creates a new <see cref="MaterialWindow" />.
               /// </summary>
-              public WindowExt() : base() {
+              public WindowExt() : base()
+              {
 
               }
 
-              public override void OnApplyTemplate() {
-                            if (m_minimizeButton != null) {
+              public override void OnApplyTemplate()
+              {
+                            if (m_minimizeButton != null)
+                            {
                                           m_minimizeButton.Click -= MinimizeButtonClickHandler;
                             }
 
                             m_minimizeButton = GetTemplateChild(MinimizeButtonName) as Button;
 
-                            if (m_minimizeButton != null) {
+                            if (m_minimizeButton != null)
+                            {
                                           m_minimizeButton.Click += MinimizeButtonClickHandler;
                             }
 
-                            if (m_maximizeRestoreButton != null) {
+                            if (m_maximizeRestoreButton != null)
+                            {
                                           m_maximizeRestoreButton.Click -= MaximizeRestoreButtonClickHandler;
                             }
 
                             m_maximizeRestoreButton = GetTemplateChild(MaximizeRestoreButtonName) as Button;
 
-                            if (m_maximizeRestoreButton != null) {
+                            if (m_maximizeRestoreButton != null)
+                            {
                                           m_maximizeRestoreButton.Click += MaximizeRestoreButtonClickHandler;
                             }
 
-                            if (m_closeButton != null) {
+                            if (m_closeButton != null)
+                            {
                                           m_closeButton.Click -= CloseButtonClickHandler;
                             }
 
                             m_closeButton = GetTemplateChild(CloseButtonName) as Button;
 
-                            if (m_closeButton != null) {
+                            if (m_closeButton != null)
+                            {
                                           m_closeButton.Click += CloseButtonClickHandler;
                             }
 
                             base.OnApplyTemplate();
               }
 
-              private void CloseButtonClickHandler(object sender, RoutedEventArgs args) {
+              private void CloseButtonClickHandler(object sender, RoutedEventArgs args)
+              {
                             Close();
               }
 
-              private void MaximizeRestoreButtonClickHandler(object sender, RoutedEventArgs args) {
+              private void MaximizeRestoreButtonClickHandler(object sender, RoutedEventArgs args)
+              {
                             WindowState = (WindowState == WindowState.Normal) ? WindowState.Maximized : WindowState.Normal;
               }
 
-              private void MinimizeButtonClickHandler(object sender, RoutedEventArgs args) {
+              private void MinimizeButtonClickHandler(object sender, RoutedEventArgs args)
+              {
                             WindowState = WindowState.Minimized;
               }
 }

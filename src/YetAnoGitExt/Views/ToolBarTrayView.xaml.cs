@@ -1,4 +1,5 @@
-﻿namespace YetAnoGitExt.Views {
+﻿namespace YetAnoGitExt.Views
+{
               using System;
               using System.Collections.Generic;
               using System.Linq;
@@ -17,8 +18,10 @@
               /// <summary>
               /// Interaction logic for ToolBarTrayView.xaml
               /// </summary>
-              public partial class ToolBarTrayView : UserControl {
-                            public ToolBarTrayView() {
+              public partial class ToolBarTrayView : UserControl
+              {
+                            public ToolBarTrayView()
+                            {
                                           InitializeComponent();
                             }
               }

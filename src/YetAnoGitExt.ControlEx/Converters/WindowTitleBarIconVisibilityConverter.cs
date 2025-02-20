@@ -22,34 +22,42 @@ using System.Windows;
 /// <summary>
 /// Converts a <see cref="WindowStyle" /> and icon of a window into a <see cref="Visibility" /> for the icon.
 /// </summary>
-public class WindowTitleBarIconVisibilityConverter : IMultiValueConverter {
+public class WindowTitleBarIconVisibilityConverter : IMultiValueConverter
+{
               /// <summary>
               /// Creates a new <see cref="WindowTitleBarIconVisibilityConverter" />.
               /// </summary>
               public WindowTitleBarIconVisibilityConverter() { }
 
-              public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
-                            try {
-                                          if (values != null && values.Length == 2) {
+              public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+              {
+                            try
+                            {
+                                          if (values != null && values.Length == 2)
+                                          {
                                                         object icon = values[0];
                                                         WindowStyle windowStyle = (WindowStyle)values[1];
 
-                                                        if (icon != null && (windowStyle == WindowStyle.SingleBorderWindow || windowStyle == WindowStyle.ThreeDBorderWindow)) {
+                                                        if (icon != null && (windowStyle == WindowStyle.SingleBorderWindow || windowStyle == WindowStyle.ThreeDBorderWindow))
+                                                        {
                                                                       return Visibility.Visible;
                                                         }
-                                                        else {
+                                                        else
+                                                        {
                                                                       return Visibility.Collapsed;
                                                         }
                                           }
                             }
-                            catch (Exception) {
+                            catch (Exception)
+                            {
                                           // use the default return value below
                             }
 
                             return Visibility.Visible;
               }
 
-              public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) {
+              public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+              {
                             throw new NotImplementedException();
               }
 }

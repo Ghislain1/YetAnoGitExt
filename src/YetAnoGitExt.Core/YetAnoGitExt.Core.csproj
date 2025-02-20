@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <!--TO improve Peformance: see StringPool -->
-    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
+    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
+
   </ItemGroup>
 
 </Project>

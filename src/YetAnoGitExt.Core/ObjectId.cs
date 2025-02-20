@@ -14,7 +14,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
+public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId>
+{
               private static readonly ThreadLocal<byte[]> _buffer = new(() => new byte[_sha1ByteCount], trackAllValues: false);
               private static readonly Random _random = new();
 
@@ -37,7 +38,8 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// Produces an <see cref="ObjectId"/> populated with random bytes.
               /// </summary>
 
-              public static ObjectId Random() {
+              public static ObjectId Random()
+              {
                             return new ObjectId(
                                 unchecked((ulong)_random.NextInt64()),
                                 unchecked((ulong)_random.NextInt64()),
@@ -62,8 +64,10 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <returns>The parsed <see cref="ObjectId"/>.</returns>
               /// <exception cref="FormatException"><paramref name="s"/> did not contain a valid 40-character SHA-1 hash, or <paramref name="s"/> is <see langword="null"/>.</exception>
 
-              public static ObjectId Parse(string s) {
-                            if (s?.Length is not Sha1CharCount || !TryParse(s.AsSpan(), out ObjectId id)) {
+              public static ObjectId Parse(string s)
+              {
+                            if (s?.Length is not Sha1CharCount || !TryParse(s.AsSpan(), out ObjectId id))
+                            {
                                           throw new FormatException($"Unable to parse object ID \"{s}\".");
                             }
 
@@ -82,8 +86,10 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <returns>The parsed <see cref="ObjectId"/>.</returns>
               /// <exception cref="FormatException"><paramref name="s"/> did not contain a valid 40-character SHA-1 hash.</exception>
 
-              public static ObjectId Parse(string s, Capture capture) {
-                            if (s is null || capture?.Length is not Sha1CharCount || !TryParse(s.AsSpan(capture.Index, capture.Length), out ObjectId id)) {
+              public static ObjectId Parse(string s, Capture capture)
+              {
+                            if (s is null || capture?.Length is not Sha1CharCount || !TryParse(s.AsSpan(capture.Index, capture.Length), out ObjectId id))
+                            {
                                           throw new FormatException($"Unable to parse object ID \"{s}\".");
                             }
 
@@ -101,8 +107,10 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <param name="s">The string to try parsing from.</param>
               /// <param name="objectId">The parsed <see cref="ObjectId"/>, or <c>null</c> if parsing was unsuccessful.</param>
               /// <returns><c>true</c> if parsing was successful, otherwise <c>false</c>.</returns>
-              public static bool TryParse(string? s, [NotNullWhen(returnValue: true)] out ObjectId? objectId) {
-                            if (s is null) {
+              public static bool TryParse(string? s, [NotNullWhen(returnValue: true)] out ObjectId? objectId)
+              {
+                            if (s is null)
+                            {
                                           objectId = default;
                                           return false;
                             }
@@ -122,8 +130,10 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <param name="offset">The position within <paramref name="s"/> to start parsing from.</param>
               /// <param name="objectId">The parsed <see cref="ObjectId"/>, or <c>null</c> if parsing was unsuccessful.</param>
               /// <returns><c>true</c> if parsing was successful, otherwise <c>false</c>.</returns>
-              public static bool TryParse(string? s, int offset, [NotNullWhen(returnValue: true)] out ObjectId? objectId) {
-                            if (s is null || s.Length - offset < Sha1CharCount) {
+              public static bool TryParse(string? s, int offset, [NotNullWhen(returnValue: true)] out ObjectId? objectId)
+              {
+                            if (s is null || s.Length - offset < Sha1CharCount)
+                            {
                                           objectId = default;
                                           return false;
                             }
@@ -144,15 +154,18 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <returns><c>true</c> if parsing succeeded, otherwise <c>false</c>.</returns>
 
               [SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Performance")]
-              public static bool TryParse(in ReadOnlySpan<char> array, [NotNullWhen(returnValue: true)] out ObjectId? objectId) {
-                            if (array.Length != Sha1CharCount) {
+              public static bool TryParse(in ReadOnlySpan<char> array, [NotNullWhen(returnValue: true)] out ObjectId? objectId)
+              {
+                            if (array.Length != Sha1CharCount)
+                            {
                                           objectId = default;
                                           return false;
                             }
 
                             if (!ulong.TryParse(array.Slice(0, 16), NumberStyles.AllowHexSpecifier, provider: null, out ulong i1)
                                 || !ulong.TryParse(array.Slice(16, 16), NumberStyles.AllowHexSpecifier, provider: null, out ulong i2)
-                                || !uint.TryParse(array.Slice(32, 8), NumberStyles.AllowHexSpecifier, provider: null, out uint i3)) {
+                                || !uint.TryParse(array.Slice(32, 8), NumberStyles.AllowHexSpecifier, provider: null, out uint i3))
+                            {
                                           objectId = default;
                                           return false;
                             }
@@ -174,15 +187,18 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <returns><c>true</c> if parsing succeeded, otherwise <c>false</c>.</returns>
 
               [SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Performance")]
-              public static bool TryParse(in ReadOnlySpan<byte> array, [NotNullWhen(returnValue: true)] out ObjectId? objectId) {
-                            if (array.Length != Sha1CharCount) {
+              public static bool TryParse(in ReadOnlySpan<byte> array, [NotNullWhen(returnValue: true)] out ObjectId? objectId)
+              {
+                            if (array.Length != Sha1CharCount)
+                            {
                                           objectId = default;
                                           return false;
                             }
 
                             if (!Utf8Parser.TryParse(array.Slice(0, 16), out ulong i1, out int _, standardFormat: 'X')
                                 || !Utf8Parser.TryParse(array.Slice(16, 16), out ulong i2, out int _, standardFormat: 'X')
-                                || !Utf8Parser.TryParse(array.Slice(32, 8), out uint i3, out int _, standardFormat: 'X')) {
+                                || !Utf8Parser.TryParse(array.Slice(32, 8), out uint i3, out int _, standardFormat: 'X'))
+                            {
                                           objectId = default;
                                           return false;
                             }
@@ -209,12 +225,15 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               [Pure]
               public static bool IsValidPartial(string s, int minLength) => s.Length >= minLength && s.Length <= Sha1CharCount && IsValidCharacters(s);
 
-              private static bool IsValidCharacters(string s) {
+              private static bool IsValidCharacters(string s)
+              {
                             // ReSharper disable once LoopCanBeConvertedToQuery
                             // ReSharper disable once ForCanBeConvertedToForeach
-                            for (int i = 0; i < s.Length; i++) {
+                            for (int i = 0; i < s.Length; i++)
+                            {
                                           char c = s[i];
-                                          if (!char.IsDigit(c) && (c < 'a' || c > 'f')) {
+                                          if (!char.IsDigit(c) && (c < 'a' || c > 'f'))
+                                          {
                                                         return false;
                                           }
                             }
@@ -226,7 +245,8 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               private readonly ulong _i2;
               private readonly uint _i3;
 
-              private ObjectId(ulong i1, ulong i2, uint i3) {
+              private ObjectId(ulong i1, ulong i2, uint i3)
+              {
                             _i1 = i1;
                             _i2 = i2;
                             _i3 = i3;
@@ -234,14 +254,17 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
 
               #region IComparable<ObjectId>
 
-              public int CompareTo(ObjectId other) {
+              public int CompareTo(ObjectId other)
+              {
                             int result = _i1.CompareTo(other._i1);
-                            if (result != 0) {
+                            if (result != 0)
+                            {
                                           return result;
                             }
 
                             result = _i2.CompareTo(other._i2);
-                            if (result != 0) {
+                            if (result != 0)
+                            {
                                           return result;
                             }
 
@@ -253,7 +276,8 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <summary>
               /// Returns the SHA-1 hash.
               /// </summary>
-              public override string ToString() {
+              public override string ToString()
+              {
                             return ToShortString(Sha1CharCount);
               }
 
@@ -264,12 +288,15 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               /// <exception cref="ArgumentOutOfRangeException"><paramref name="length"/> is less than zero, or more than 40.</exception>
               [Pure]
               [SuppressMessage("Style", "IDE0057:Use range operator", Justification = "Performance")]
-              public unsafe string ToShortString(int length = 8) {
-                            if (length < 0) {
+              public unsafe string ToShortString(int length = 8)
+              {
+                            if (length < 0)
+                            {
                                           throw new ArgumentOutOfRangeException(nameof(length), length, "Cannot be less than zero.");
                             }
 
-                            if (length > Sha1CharCount) {
+                            if (length > Sha1CharCount)
+                            {
                                           throw new ArgumentOutOfRangeException(nameof(length), length, $"Cannot be greater than {Sha1CharCount}.");
                             }
 
@@ -285,7 +312,8 @@ public sealed class ObjectId : IEquatable<ObjectId>, IComparable<ObjectId> {
               #region Equality and hashing
 
               /// <inheritdoc />
-              public bool Equals(ObjectId? other) {
+              public bool Equals(ObjectId? other)
+              {
                             return other is not null &&
                                    _i1 == other._i1 &&
                                    _i2 == other._i2 &&
