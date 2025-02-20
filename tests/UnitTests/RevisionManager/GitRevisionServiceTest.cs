@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using Xunit.Abstractions;
-
+public interface ITreeItem
+{
+   public IList<ITreeItem> Children { get; }
+}
 public class GitRevisionServiceTest
 {
     private ITestOutputHelper _logger;
@@ -31,12 +34,13 @@ public class GitRevisionServiceTest
 
     private (int level, object item)[] BuildQueue(int level, object treeItem)
     {
-        List<(int level, ITreeItem item)> result = new()
+        List<(int level, object item)> result = new()
         {
-            (level,treeItem)
+           
         };
 
-        foreach (var item in treeItem.Children)
+
+        foreach (var item in (treeItem as ITreeItem).Children)
         {
             result.AddRange(BuildQueue(level + 1, item));
         }

@@ -34,7 +34,8 @@ public class WindowExt : Window {
               /// <summary>
               /// The color for the border and caption area background of the window.
               /// </summary>
-              public Brush BorderBackgroundBrush {
+              public Brush
+                            BorderBackgroundBrush {
                             get {
                                           return (Brush)GetValue(BorderBackgroundBrushProperty);
                             }
