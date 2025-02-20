@@ -61,7 +61,7 @@ end_of_line = crlf
 insert_final_newline = false
 
 #  GHIS- CSharp formatting rules:
-csharp_new_line_before_open_brace = methods, properties, control_blocks, types
+csharp_new_line_before_open_brace = true
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
